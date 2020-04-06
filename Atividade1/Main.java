@@ -26,6 +26,9 @@ public class Main {
         u3 = new Usuario(nome,senha,email);
         c3 = new Conta(u3, 3000);
 
+        // As contas tem saldos iniciais dados pelo enunciado
+        
+        // Estado inicial
         System.out.println("Estado Inicial: ");
         System.out.println("Nome Usuario: " + c1.getNome() + " - Saldo: " + c1.getSaldo());
         System.out.println("Nome Usuario: " + c2.getNome() + " - Saldo: " + c2.getSaldo());
@@ -46,22 +49,11 @@ public class Main {
         transacao.Pagamento(requerimento, c3, c2);
 
 
-        
-
-
+        // Estado final
         System.out.println("\n\n\n\nEstado Final: ");
         System.out.println("Nome Usuario: " + c1.getNome() + " - Saldo: " + c1.getSaldo());
         System.out.println("Nome Usuario: " + c2.getNome() + " - Saldo: " + c2.getSaldo());
         System.out.println("Nome Usuario: " + c3.getNome() + " - Saldo: " + c3.getSaldo());
-
-
-
-
-
-
-
-
-
 
         sc.close();
     }
