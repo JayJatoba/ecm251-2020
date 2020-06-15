@@ -1,5 +1,5 @@
-package br.maua.Enums;
+package br.maua.enums;
 
 public enum EstadoPedido {
-    REALIZADO,PREPARACAO,SAIU_PARA_ENTREGA,ENTREGUE,DEVOLVIDO;
+    REALIZADO,  PREPARACAO, SAIU_PARA_ENTREGA, ENTREGUE, DEVOLVIDO;
 }
