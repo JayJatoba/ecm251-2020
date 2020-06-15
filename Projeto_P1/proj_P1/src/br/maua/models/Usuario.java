@@ -12,7 +12,7 @@ public class Usuario extends Funcionario implements Autenticacao{
 
     @Override
     public String toString() {
-        return "Usuario [email=" + email + ", nome=" + nome + ", senha=" + senha + "]";
+        return "Usuario [email=" + email + ", nome=" + nome + "]";
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Usuario extends Funcionario implements Autenticacao{
         Scanner sc = new Scanner(System.in);
         System.out.println("Qual a senha?");
         String senhaFinal = sc.nextLine();
-        sc.close();
+        
         if (this.getSenha().equals(senhaFinal)){
             return true;
         }
