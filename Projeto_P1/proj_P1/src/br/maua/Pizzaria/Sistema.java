@@ -1,8 +1,6 @@
 package br.maua.Pizzaria;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import br.maua.enums.EstadoPedido;
@@ -20,19 +18,8 @@ public class Sistema {
         
         while (flag){
             menu();
-            Scanner sc = new Scanner(System.in);
-            String opcao = sc.nextLine();
-
-            int escolha;
-            try {
-               escolha = Integer.parseInt(opcao);
-        }
-        // Erro para opção que não é número inteiro,
-        // que com default vai para 999999
-            catch (NumberFormatException e)
-        {
-               escolha = 999999;
-        }
+            int escolha = verificacaoErros();
+            
 
             switch (escolha) {
                 case 1:
@@ -56,9 +43,25 @@ public class Sistema {
                     break;
         
                 default:
-                
+                    System.out.println("Valores aceitos: 0 - 1 - 2 - 3");
                     break;}}
         
+    }
+
+    public static int verificacaoErros(){
+        Scanner sc = new Scanner(System.in);
+        String opcao = sc.nextLine();
+
+        
+        try {
+            return Integer.parseInt(opcao);
+        }
+        // Erro para opção que não é número inteiro,
+        // que com default vai para 999999
+        catch (NumberFormatException e)
+        {
+            return 999999;
+        }
     }
 
 
@@ -103,13 +106,7 @@ public class Sistema {
             boolean flag2 = true;
             int metodo=0;
             while(flag2){
-                String opcao = sc.nextLine();
-                
-                try {
-                    metodo = Integer.parseInt(opcao);
-}
-                catch (NumberFormatException e){
-                    metodo = 0;}
+                metodo = verificacaoErros();
                 switch (metodo) {
                     case 1:
                         listaPedidos.add(new Pedido(descricao, valor, TipoPagamento.DINHEIRO));
@@ -170,37 +167,34 @@ public class Sistema {
                         boolean flag2 = true;
                         int metodo=0;
                         while(flag2){
-                            String opcao = sc.nextLine();
+                            metodo = verificacaoErros();
+                            switch (metodo) {
+                                case 1:
+                                    pedido.setEstadoPedido(EstadoPedido.PREPARACAO);
+                                    flag2 = false;
+                                    break;
+                                case 2:
+                                    pedido.setEstadoPedido(EstadoPedido.SAIU_PARA_ENTREGA);
+                                    flag2 = false;
+                                    break;
+                                case 3:
+                                    pedido.setEstadoPedido(EstadoPedido.ENTREGUE);
+                                    flag2 = false;
+                                    break;
+                                case 4:
+                                    pedido.setEstadoPedido(EstadoPedido.DEVOLVIDO);
+                                    flag2 = false;
+                                    break;
                         
-                            try {
-                                metodo = Integer.parseInt(opcao);}
-                            catch (NumberFormatException e){
-                                metodo = 0;}
-                        switch (metodo) {
-                            case 1:
-                                pedido.setEstadoPedido(EstadoPedido.PREPARACAO);
-                                flag2 = false;
-                                break;
-                            case 2:
-                                pedido.setEstadoPedido(EstadoPedido.SAIU_PARA_ENTREGA);
-                                flag2 = false;
-                                break;
-                            case 3:
-                                pedido.setEstadoPedido(EstadoPedido.ENTREGUE);
-                                flag2 = false;
-                                break;
-                            case 4:
-                                pedido.setEstadoPedido(EstadoPedido.DEVOLVIDO);
-                                flag2 = false;
-                                break;
-                    
-                            default:
-                                System.out.println("Valores aceitos somente de 1 a 4.");
-                                break;}
-                            System.out.println("Estado do pedido alterado.");
-                    break;}}//Termina o foreach
+                                default:
+                                    System.out.println("Valores aceitos somente de 1 a 4, inteiro.\nQual sua escolha?");
+
+                                    break;}
+                                }
+                        System.out.println("Estado do pedido alterado.");
+                        break;}
                 
-            }
+            }//Termina o foreach
                 if (!alteracao){
                     System.out.println("Pedido com id = "+idPedido+" não encontrado.");
                 }    
