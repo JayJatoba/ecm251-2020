@@ -1,46 +1,49 @@
 package br.maua.models;
 
+import java.util.Random;
+
 import br.maua.enums.EstadoPedido;
 import br.maua.enums.TipoPagamento;
 
 public class Pedido {
-    protected String id;
-    protected String descricao;
-    protected float valor;
-    protected TipoPagamento pagamento;
-    public EstadoPedido estadoPedido;
+    private String id = geradorId();
+    private String descricao;
+    private float valor;
+    private TipoPagamento pagamento;
+    private EstadoPedido estadoPedido;
 
 
-    public String getId() {
-       return id;
+    
+
+    private String geradorId(){
+        Random random = new Random();
+        String idGerado = "";
+        for (int i = 0; i < 3; i++) {
+            idGerado += random.nextInt(10);
+        }
+        return idGerado;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido [descricao=" + descricao + ", estadoPedido=" + estadoPedido + ", id=" + id + ", pagamento="
+                + pagamento + ", valor=" + valor + "]";
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
     public TipoPagamento getPagamento() {
         return pagamento;
     }
 
-    public void setPagamento(TipoPagamento pagamento) {
-        this.pagamento = pagamento;
+    public String getId() {
+        return id;
+    }
+
+    public float getValor() {
+        return valor;
     }
 
     public EstadoPedido getEstadoPedido() {
@@ -51,6 +54,12 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }
 
+    public Pedido(String descricao, float valor, TipoPagamento pagamento) {
+        this.descricao = descricao;
+        this.valor = valor;
+        this.pagamento = pagamento;
+        this.setEstadoPedido(EstadoPedido.REALIZADO);
+    }
     
     
 }
