@@ -22,6 +22,10 @@ public class Sistema {
             
 
             switch (escolha) {
+                case 0:
+                    flag = false;
+                    break;
+
                 case 1:
                     fazerPedido(listaPedidos, user);
                     break;
@@ -32,10 +36,6 @@ public class Sistema {
 
                 case 3:
                     alterarEstado(listaPedidos, user);
-                    break;
-
-                case 0:
-                    flag = false;
                     break;
 
                 case 999999:
