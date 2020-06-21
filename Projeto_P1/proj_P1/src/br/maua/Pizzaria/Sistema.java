@@ -8,6 +8,16 @@ import br.maua.enums.TipoPagamento;
 import br.maua.models.Pedido;
 import br.maua.models.Usuario;
 
+/**
+ * Classe sistema 
+ *      É chamada pela classe principal
+ *      Interface com o usuário
+ * 
+ * @author João Guilherme Martins Jatobá - 18.01790-8@maua.br
+ * @since 15/06/2020
+ * @version 1.0
+ */
+
 public class Sistema {
 
     public static void run(){
@@ -133,7 +143,7 @@ public class Sistema {
                         System.out.println("Pedido realizado.");
                         flag2 = false;
                         break;
-                    
+                                 
                     default:
                         System.out.println("Valores aceitos somente de 1 a 5.");
                         break;}

@@ -5,6 +5,18 @@ import java.util.Random;
 import br.maua.enums.EstadoPedido;
 import br.maua.enums.TipoPagamento;
 
+/**
+ * 
+ * Classe concreta do Pedido.
+ * Define o funcionamento de um Pedido feito no sistema.
+ * 
+ * 
+ * @author João Guilherme Martins Jatobá - 18.01790-8@maua.br
+ * @since 15/06/2020
+ * @version 1.0
+ */
+
+
 public class Pedido {
     private String id = geradorId();
     private String descricao;
@@ -12,8 +24,6 @@ public class Pedido {
     private TipoPagamento pagamento;
     private EstadoPedido estadoPedido;
 
-
-    
 
     private String geradorId(){
         Random random = new Random();
