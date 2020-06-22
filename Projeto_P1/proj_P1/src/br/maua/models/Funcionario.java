@@ -16,6 +16,18 @@ public abstract class Funcionario {
     protected String email;
     protected String senha;
 
+
+
+/**
+ * 
+ * Método construtor da classe Funcionario
+ * Recebe como parâmetroes nome, email e senha.
+ * Iniciado quando qualquer classe filha é instanciada.
+ * 
+ * @param nome
+ * @param email
+ * @param senha
+ */
     public Funcionario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
@@ -23,14 +35,25 @@ public abstract class Funcionario {
     }
 
 
+    
+    /** 
+     * Método que retorna o nome do funcionário.
+     * 
+     * @return String
+     */
     public String getNome() {
         return nome;
     }
 
-    public String getSenha() {
-        return senha;
-    }
+    
 
+    
+    /** 
+     * 
+     * Método que retorna o email do funcionário
+     * 
+     * @return String
+     */
     public String getEmail() {
         return email;
     }
