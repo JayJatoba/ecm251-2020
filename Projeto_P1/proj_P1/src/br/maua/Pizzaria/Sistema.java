@@ -20,10 +20,14 @@ import br.maua.models.Usuario;
 
 public class Sistema {
 
+    /**
+     * Método que faz a conversa direta com o usuário do código.
+     */
+
     public static void run(){
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         boolean flag = true;
-        Usuario user = new Usuario("MZ", "mz@email.com", "123456");
+        Usuario user = new Usuario("Teste", "email_teste@teste.com", "123456");
         
         
         while (flag){
@@ -58,6 +62,14 @@ public class Sistema {
         
     }
 
+    
+    /** 
+     * 
+     * Método usado para retornar o número da opção escolhida quando
+     * são chamados os métodos: fazerPedido (escolha do pagamento) e alterarEstado (alterar estado atual do pedido).
+     * 
+     * @return int
+     */
     public static int verificacaoErros(){
         Scanner sc = new Scanner(System.in);
         String opcao = sc.nextLine();
@@ -126,6 +138,7 @@ public class Sistema {
             
             boolean flag2 = true;
             int metodo=0;
+            // Início do switch case de leitura do tipo de pagamento.
             while(flag2){
                 metodo = verificacaoErros();
                 switch (metodo) {
@@ -171,6 +184,16 @@ public class Sistema {
 
 
 
+    
+    /** 
+     * 
+     * Método que irá mudar o estado de pedidos da lista do sistema.
+     * Recebe como parâmetros a lista do sistema, e o usuário que deve autenticar sua senha,
+     * já que não é qualquer pessoa que pode mudar o estado de pedidos.
+     * 
+     * @param listaPedidos
+     * @param user
+     */
     public static void alterarEstado(ArrayList<Pedido> listaPedidos, Usuario user){
         if(verificaLista(listaPedidos)){
             if (user.autenticarSenha()){
@@ -230,6 +253,15 @@ public class Sistema {
     }
         
 
+    
+    /** 
+     * Método booleano que recebe a lista de pedidos do sistema.
+     * Retorna true se a lista está vazia.
+     * False se tem algum elemento.
+     * 
+     * @param listaPedidos
+     * @return boolean
+     */
     public static boolean verificaLista(ArrayList<Pedido> listaPedidos){
         if (listaPedidos.isEmpty()){
             return false;
@@ -237,6 +269,18 @@ public class Sistema {
         return true;
     } 
 
+    
+    /** 
+     * 
+     * Método void, que imprime a lista de pedidos (único parâmetro)
+     * quando não está vazia.
+     * Se vazia, imprime a informação de que está vazia.
+     * 
+     * 
+     * Recebe a lista de pedidos do sistema.
+     * 
+     * @param listaPedidos único parâmetro
+     */
     public static void mostrarPedidos(ArrayList<Pedido> listaPedidos){
         if (verificaLista(listaPedidos)){
             for (Pedido pedido : listaPedidos) {
@@ -249,6 +293,14 @@ public class Sistema {
         
     }
 
+
+
+    /**
+     * 
+     * Método que imprime o menu de opções do sistema.
+     * Interface gráfica inicial.
+     * 
+     */
     public static void menu(){
         System.out.println("Pizzaria o Rato que Ri:\n1 - Nova venda\n2 - Verificar pedidos\n3 - Alterar pedidos\n0 - Sair");
     }
