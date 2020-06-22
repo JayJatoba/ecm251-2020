@@ -76,7 +76,18 @@ public class Sistema {
 
 
 
-
+    /**
+     * 
+     * Este método é usado para criação de um pedido.
+     * O sistema tem salvo uma lista de Pedidos, que é passada para
+     * o método fazerPedido como parâmetro, e o pedido novo é adicionado
+     * à lista.
+     * O parâmetro de usuário é usado para fazer a autenticação de senha.
+     * Somente quem tem a senha pode adicionar pedidos.
+     * 
+     * @param listaPedidos Primeiro parâmetro do método fazerPedido
+     * @param user Segundo parâmetro do método fazerPedido
+     */
     public static void fazerPedido(ArrayList<Pedido> listaPedidos, Usuario user){
         if(user.autenticarSenha()){
             Scanner sc = new Scanner(System.in);
