@@ -25,12 +25,20 @@ public class Usuario extends Funcionario implements Autenticacao{
         
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return "Usuario [email=" + email + ", nome=" + nome + "]";
     }
 
 
+    
+    /** 
+     * @return boolean
+     */
     // TODO Pensar se autenticar é de usuário ou Funcionário.
     @Override
     public boolean autenticarSenha() {
@@ -38,7 +46,7 @@ public class Usuario extends Funcionario implements Autenticacao{
         System.out.println("Qual a senha?");
         String senhaFinal = sc.nextLine();
         
-        if (this.getSenha().equals(senhaFinal)){
+        if (this.senha.equals(senhaFinal)){
             return true;
         }
         else {
