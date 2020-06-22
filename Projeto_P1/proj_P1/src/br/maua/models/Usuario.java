@@ -19,7 +19,14 @@ import br.maua.interfaces.Autenticacao;
 
 public class Usuario extends Funcionario implements Autenticacao{
 
-
+/**
+ * 
+ * Construtor da classe. Super construtor da classe mãe.
+ * 
+ * @param nome
+ * @param email
+ * @param senha
+ */
     public Usuario(String nome, String email, String senha) {
         super(nome, email, senha);
         
@@ -27,6 +34,8 @@ public class Usuario extends Funcionario implements Autenticacao{
 
     
     /** 
+     * Retorna dados do Usuário, sem senha.
+     * 
      * @return String
      */
     @Override
@@ -37,9 +46,13 @@ public class Usuario extends Funcionario implements Autenticacao{
 
     
     /** 
+     * Método da interface de Autenticação.
+     * Retorna true se a senha for correta.
+     * False se incorreta.
+     * 
+     * 
      * @return boolean
      */
-    // TODO Pensar se autenticar é de usuário ou Funcionário.
     @Override
     public boolean autenticarSenha() {
         Scanner sc = new Scanner(System.in);
