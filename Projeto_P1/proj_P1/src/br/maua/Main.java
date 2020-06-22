@@ -14,6 +14,13 @@ import br.maua.Pizzaria.Sistema;
  */
 
 public class Main {
+    
+    /**
+     * Método main padrão que inicia o código.
+     * 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {        
         Sistema.run();
     }
