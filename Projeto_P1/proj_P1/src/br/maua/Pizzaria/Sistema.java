@@ -89,7 +89,7 @@ public class Sistema {
             try {
                 valor = Float.parseFloat(valorStr);
                 if(valor<=0){
-                    throw new IllegalArgumentException("Valor da compra não pode ser negativo.");
+                    throw new IllegalArgumentException("Valor da compra tem que ser maior que 0.");
                 }
                 break;
                 
