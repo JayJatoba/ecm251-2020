@@ -78,8 +78,8 @@ public class Pedido {
      */
     @Override
     public String toString() {
-        return "Pedido [descricao=" + descricao + ", estadoPedido=" + estadoPedido + ", id=" + id + ", pagamento="
-                + pagamento + ", valor=" + valor + "]";}
+        return "Pedido "+id+":\n\tDescricao: " + descricao + "\n\tEstado do pedido: " + estadoPedido + "\n\tMeio de pagamento: "
+                + pagamento + "\n\tValor: R$ " + valor+"\n";}
     
     /** 
      * Retorna o ID do pagamento.
