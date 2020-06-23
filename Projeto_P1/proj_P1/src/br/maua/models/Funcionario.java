@@ -12,30 +12,38 @@ package br.maua.models;
  */
 
 public abstract class Funcionario {
+    /**
+     * Variável tipo String, 
+     * representa o nome do funcionário da pizzaria.
+     */
     protected String nome;
+    /**
+     * Variável tipo String, 
+     * representa o email do funcionário da pizzaria.
+     */
     protected String email;
+    /**
+     * Variável tipo String, 
+     * representa a senha do funcionário da pizzaria.
+     */
     protected String senha;
 
-
-
-/**
- * 
- * Método construtor da classe Funcionario
- * Recebe como parâmetroes nome, email e senha.
- * Iniciado quando qualquer classe filha é instanciada.
- * 
- * @param nome
- * @param email
- * @param senha
- */
+    /**
+     * 
+     * Método construtor da classe Funcionario
+     * Recebe como parâmetroes nome, email e senha.
+     * Iniciado quando qualquer classe filha é instanciada.
+     * 
+     * @param nome
+     * @param email
+     * @param senha
+     */
     public Funcionario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-
-    
     /** 
      * Método que retorna o nome do funcionário.
      * 
@@ -45,9 +53,6 @@ public abstract class Funcionario {
         return nome;
     }
 
-    
-
-    
     /** 
      * 
      * Método que retorna o email do funcionário
