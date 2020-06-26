@@ -1,4 +1,4 @@
-package br.maua.Pizzaria;
+package br.maua.pizzaria;
 
 import java.util.ArrayList;
 import java.util.Scanner;

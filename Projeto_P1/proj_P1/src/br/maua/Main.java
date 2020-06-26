@@ -1,10 +1,9 @@
 package br.maua;
 
-import br.maua.Pizzaria.Sistema;
+import br.maua.pizzaria.Sistema;
 
 /**
- * Projeto de faculdade do primeiro semestre
- * de 2020
+ * Projeto de faculdade do primeiro semestre de 2020
  * 
  * Classe principal, que chama o início do sistema
  * 
