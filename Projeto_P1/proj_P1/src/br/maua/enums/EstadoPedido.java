@@ -1,4 +1,4 @@
-package br.maua.jjjjj;
+package br.maua.enums;
 
 
 /**

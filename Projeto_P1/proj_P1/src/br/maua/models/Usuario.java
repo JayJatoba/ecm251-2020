@@ -1,8 +1,8 @@
-package br.maua.kkkkk;
+package br.maua.models;
 
 import java.util.Scanner;
 
-import br.maua.fffff.Autenticacao;
+import br.maua.interfaces.Autenticacao;
 
 /**
  * 

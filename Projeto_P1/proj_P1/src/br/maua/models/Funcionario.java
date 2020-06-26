@@ -1,4 +1,4 @@
-package br.maua.kkkkk;
+package br.maua.models;
 
 /**
  * 

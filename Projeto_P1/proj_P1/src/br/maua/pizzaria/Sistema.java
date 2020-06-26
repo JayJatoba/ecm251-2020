@@ -1,12 +1,12 @@
-package br.maua.aaaaa;
+package br.maua.pizzaria;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import br.maua.jjjjj.EstadoPedido;
-import br.maua.jjjjj.TipoPagamento;
-import br.maua.kkkkk.Pedido;
-import br.maua.kkkkk.Usuario;
+import br.maua.enums.EstadoPedido;
+import br.maua.enums.TipoPagamento;
+import br.maua.models.Pedido;
+import br.maua.models.Usuario;
 
 /**
  * Classe sistema 

@@ -1,6 +1,6 @@
 
 
-import br.maua.aaaaa.Sistema;
+import br.maua.pizzaria.Sistema;
 
 /**
  * Projeto de faculdade do primeiro semestre de 2020

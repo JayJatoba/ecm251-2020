@@ -1,4 +1,4 @@
-package br.maua.fffff;
+package br.maua.interfaces;
 
 /**
  * 
