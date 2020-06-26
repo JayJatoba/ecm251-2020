@@ -1,9 +1,9 @@
-package br.maua.models;
+package br.maua.kkkkk;
 
 import java.util.Random;
 
-import br.maua.enums.EstadoPedido;
-import br.maua.enums.TipoPagamento;
+import br.maua.jjjjj.EstadoPedido;
+import br.maua.jjjjj.TipoPagamento;
 
 /**
  * 
