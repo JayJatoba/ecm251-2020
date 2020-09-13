@@ -1,11 +1,11 @@
 package sample.model;
 
-public class Pokemon {
+public class Carta {
     private String urlImagem;
     private int id,colecao;
     private String nome,raridade,serie;
 
-    public Pokemon(String urlImagem, int id, int colecao, String nome, String raridade, String serie) {
+    public Carta(String urlImagem, int id, int colecao, String nome, String raridade, String serie) {
         this.urlImagem = urlImagem;
         this.id = id;
         this.colecao = colecao;
