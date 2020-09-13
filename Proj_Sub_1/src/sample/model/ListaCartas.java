@@ -10,8 +10,8 @@ public class ListaCartas {
         lista_carta = new ArrayList<>();
     }
 
-    public void adicionarCarta(String urlImagem, int id, int colecao, String nome, String raridade, String serie){
-        lista_carta.add(new Carta(urlImagem,id,colecao,nome,raridade,serie));
+    public void adicionarCarta(String urlImagem, int colecao, String nome, String raridade, String serie){
+        lista_carta.add(new Carta(urlImagem,colecao,nome,raridade,serie));
     }
 
 

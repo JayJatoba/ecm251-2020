@@ -4,4 +4,4 @@ module Proj_Sub_1{
     requires javafx.controls;
 
     opens sample;
-        }
+}
