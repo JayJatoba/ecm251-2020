@@ -1,14 +1,14 @@
 package sample.model;
 
 public class Carta {
-    private String urlImagem;
-    private int colecao;
-    private static int id=-1;
+    private String urlImagem,idCarta, colecao;
+    private static int num =-1;
     private String nome,raridade,serie;
 
-    public Carta(String urlImagem, int colecao, String nome, String raridade, String serie) {
+    public Carta(String urlImagem, String idCarta,String colecao, String nome, String raridade, String serie) {
         this.urlImagem = urlImagem;
-        this.id = id+1;
+        this.num = num +1;
+        this.idCarta = idCarta;
         this.colecao = colecao;
         this.nome = nome;
         this.raridade = raridade;
@@ -19,11 +19,11 @@ public class Carta {
         return urlImagem;
     }
 
-    public int getId() {
-        return id;
+    public int getNum() {
+        return num;
     }
 
-    public int getColecao() {
+    public String getColecao() {
         return colecao;
     }
 
@@ -39,11 +39,19 @@ public class Carta {
         return serie;
     }
 
+    public String getIdCarta() {
+        return idCarta;
+    }
+
+    public void setIdCarta(String idCarta) {
+        this.idCarta = idCarta;
+    }
+
     public void setUrlImagem(String urlImagem) {
         this.urlImagem = urlImagem;
     }
 
-    public void setColecao(int colecao) {
+    public void setColecao(String colecao) {
         this.colecao = colecao;
     }
 

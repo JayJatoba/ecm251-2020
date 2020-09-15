@@ -22,23 +22,23 @@ public class Controller {
 
     // Cadastro
     @FXML
-    private TextField txtUrl_Cadastro;
+    private TextField txtUrlCadastro;
     @FXML
-    private TextField txtSerie_Cadastro;
+    private TextField txtSerieCadastro;
     @FXML
-    private TextField txtRaridade_Cadastro;
+    private TextField txtRaridadeCadastro;
     @FXML
-    private TextField txtNome_Cadastro;
+    private TextField txtNomeCadastro,txtColecaoCadastro,txtIdCadastro;
 
     // Atual
     @FXML
-    private Label lblID_Atual,lblColecao_Atual, lblNome_Atual, lblRaridade_Atual,lblSerie_Atual;
+    private Label lblIdAtual, lblColecaoAtual, lblNomeAtual, lblRaridadeAtual, lblSerieAtual;
     @FXML
     private ImageView imgImagem;
 
     // Correcao
     @FXML
-    private TextField txtNome_Correcao, txtRaridade_Correcao,txtSerie_Correcao,txtUrl_Correcao;
+    private TextField txtNomeCorrecao, txtRaridadeCorrecao, txtSerieCorrecao, txtUrlCorrecao,txtIdCorrecao,txtColecaoCorrecao;
 
     @FXML
     public void inicializar(){
@@ -50,14 +50,15 @@ public class Controller {
         }
         else{
             inicializado = true;
-            lista.lista_carta.add(new Carta("https://images.pokemontcg.io/dp6/90_hires.png",0,"Cubone","Comum","Legends Awakened"));
+            lista.listaCartas.add(new Carta("https://images.pokemontcg.io/dp6/90_hires.png","dp6-90","Legends Awakened","Cubone","Comum","Basic"));
+
             //TODO Ver se lista eh statico
-            lblID_Atual.setText(""+lista.lista_carta.get(0).getId());
-            lblColecao_Atual.setText(""+lista.lista_carta.get(0).getColecao());
-            lblNome_Atual.setText(lista.lista_carta.get(0).getNome());
-            lblRaridade_Atual.setText(lista.lista_carta.get(0).getRaridade());
-            lblSerie_Atual.setText(lista.lista_carta.get(0).getSerie());
-            Image imagem = new Image(lista.lista_carta.get(0).getUrlImagem());
+            lblIdAtual.setText(lista.listaCartas.get(0).getIdCarta());
+            lblColecaoAtual.setText(""+lista.listaCartas.get(0).getColecao());
+            lblNomeAtual.setText(lista.listaCartas.get(0).getNome());
+            lblRaridadeAtual.setText(lista.listaCartas.get(0).getRaridade());
+            lblSerieAtual.setText(lista.listaCartas.get(0).getSerie());
+            Image imagem = new Image(lista.listaCartas.get(0).getUrlImagem());
             imgImagem.setImage(imagem);
 
         }
@@ -65,19 +66,20 @@ public class Controller {
     @FXML
     public void proximaCarta(){
         if(inicializado){
-            if(Integer.parseInt(lblID_Atual.getText())+1== lista.lista_carta.size()){
+            System.out.println("Atual: "+lista.getNumAtual(lblIdAtual.getText()));
+            int novoID = lista.getNumAtual(lblIdAtual.getText())+1;
+            if(novoID== lista.listaCartas.size()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
                 alert.setHeaderText("Nao ha mais cartas");
                 alert.showAndWait();
             }else{
-                int novoID = Integer.parseInt(lblID_Atual.getText())+1;
-                lblID_Atual.setText(""+novoID);
-                lblColecao_Atual.setText(""+lista.lista_carta.get(novoID).getColecao());
-                lblNome_Atual.setText(lista.lista_carta.get(novoID).getNome());
-                lblRaridade_Atual.setText(lista.lista_carta.get(novoID).getRaridade());
-                lblSerie_Atual.setText(lista.lista_carta.get(novoID).getSerie());
-                Image imagem = new Image(lista.lista_carta.get(novoID).getUrlImagem());
+                lblIdAtual.setText(lista.listaCartas.get(novoID).getIdCarta());
+                lblColecaoAtual.setText(lista.listaCartas.get(novoID).getColecao());
+                lblNomeAtual.setText(lista.listaCartas.get(novoID).getNome());
+                lblRaridadeAtual.setText(lista.listaCartas.get(novoID).getRaridade());
+                lblSerieAtual.setText(lista.listaCartas.get(novoID).getSerie());
+                Image imagem = new Image(lista.listaCartas.get(novoID).getUrlImagem());
                 imgImagem.setImage(imagem);
             }
         }else{
@@ -87,20 +89,20 @@ public class Controller {
     @FXML
     public void cartaAnterior(){
         if (inicializado){
-            int id_atual = Integer.parseInt(lblID_Atual.getText());
-            if (id_atual==0){
+            System.out.println("Atual: "+lista.getNumAtual(lblIdAtual.getText()));
+            int novoID = lista.getNumAtual(lblIdAtual.getText())-1;
+            if (novoID==-1){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
                 alert.setHeaderText("Nao ha carta anterior");
                 alert.showAndWait();
             }else{
-                int novoID = Integer.parseInt(lblID_Atual.getText())-1;
-                lblID_Atual.setText(""+novoID);
-                lblColecao_Atual.setText(""+lista.lista_carta.get(novoID).getColecao());
-                lblNome_Atual.setText(lista.lista_carta.get(novoID).getNome());
-                lblRaridade_Atual.setText(lista.lista_carta.get(novoID).getRaridade());
-                lblSerie_Atual.setText(lista.lista_carta.get(novoID).getSerie());
-                Image imagem = new Image(lista.lista_carta.get(novoID).getUrlImagem());
+                lblIdAtual.setText(lista.listaCartas.get(novoID).getIdCarta());
+                lblColecaoAtual.setText(lista.listaCartas.get(novoID).getColecao());
+                lblNomeAtual.setText(lista.listaCartas.get(novoID).getNome());
+                lblRaridadeAtual.setText(lista.listaCartas.get(novoID).getRaridade());
+                lblSerieAtual.setText(lista.listaCartas.get(novoID).getSerie());
+                Image imagem = new Image(lista.listaCartas.get(novoID).getUrlImagem());
                 imgImagem.setImage(imagem);
             }
         }else{erroInicializacao();
@@ -110,23 +112,28 @@ public class Controller {
     @FXML
     public void cadastrar(){
         if (inicializado){
-            String url = txtUrl_Cadastro.getText();
-            String nome = txtNome_Cadastro.getText();
-            String raridade = txtRaridade_Cadastro.getText();
-            String serie = txtSerie_Cadastro.getText();
+            String url = txtUrlCadastro.getText();
+            String nome = txtNomeCadastro.getText();
+            String raridade = txtRaridadeCadastro.getText();
+            String serie = txtSerieCadastro.getText();
+            String id = txtIdCadastro.getText();
+            String colecao = txtColecaoCadastro.getText();
 
-            if(url.equals("") || nome.equals("") || raridade.equals("") || serie.equals("")){
+            if(url.equals("") || nome.equals("") || raridade.equals("") || serie.equals("") ||
+            id.equals("") || colecao.equals("")){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
-                alert.setHeaderText("Uma das entradas esta vazia. Favor prencher todas.");
+                alert.setHeaderText("Pelo menos uma das entradas está vazia. Favor preencher todas.");
                 alert.showAndWait();
             }else{
-                lista.lista_carta.add(new Carta(url,0,nome,raridade,serie));
-                txtNome_Cadastro.clear();
-                txtRaridade_Cadastro.clear();
-                txtSerie_Cadastro.clear();
-                txtUrl_Cadastro.clear();
-                //TODO perguntar o que eh colecao
+//                lista.adicionarCarta(url,id, colecao,nome,raridade,serie);
+                lista.listaCartas.add(new Carta(url,id, colecao,nome,raridade,serie));
+                txtNomeCadastro.clear();
+                txtRaridadeCadastro.clear();
+                txtSerieCadastro.clear();
+                txtUrlCadastro.clear();
+                txtIdCadastro.clear();
+                txtColecaoCadastro.clear();
 
             }
         }else{ erroInicializacao();}
@@ -135,44 +142,62 @@ public class Controller {
     @FXML
     public void atualizar(){
         if (inicializado){
-            int id_Atual = Integer.parseInt(lblID_Atual.getText());
-            String url = lista.lista_carta.get(id_Atual).getUrlImagem();
-            String urlAtualizado = txtUrl_Correcao.getText();
+            int numAtual = lista.getNumAtual(lblIdAtual.getText());
+            String url = lista.listaCartas.get(numAtual).getUrlImagem();
+            String urlAtualizado = txtUrlCorrecao.getText();
 
             if(!url.equals(urlAtualizado) && !urlAtualizado.equals("")){
                 //Atualiza a url na lista direto
-                lista.lista_carta.get(id_Atual).setUrlImagem(urlAtualizado);
+                lista.listaCartas.get(numAtual).setUrlImagem(urlAtualizado);
 
                 //Atualiza a imagem
-                Image imagem = new Image(lista.lista_carta.get(id_Atual).getUrlImagem());
+                Image imagem = new Image(lista.listaCartas.get(numAtual).getUrlImagem());
                 imgImagem.setImage(imagem);
             }
 
-            String nome = lblNome_Atual.getText();
-            String nomeAtualizado = txtNome_Correcao.getText();
+            String nome = lblNomeAtual.getText();
+            String nomeAtualizado = txtNomeCorrecao.getText();
             if(!nome.equals(nomeAtualizado) && !nomeAtualizado.equals("")){
-                lista.lista_carta.get(id_Atual).setNome(nomeAtualizado);
-                lblNome_Atual.setText(nomeAtualizado);
+                lista.listaCartas.get(numAtual).setNome(nomeAtualizado);
+                lblNomeAtual.setText(nomeAtualizado);
             }
 
-            String raridade = lblRaridade_Atual.getText();
-            String raridadeAtualizada = txtRaridade_Correcao.getText();
+            String raridade = lblRaridadeAtual.getText();
+            String raridadeAtualizada = txtRaridadeCorrecao.getText();
             if(!raridade.equals(raridadeAtualizada) && !raridadeAtualizada.equals("")){
-                lista.lista_carta.get(id_Atual).setRaridade(raridadeAtualizada);
-                lblRaridade_Atual.setText(raridadeAtualizada);
+                lista.listaCartas.get(numAtual).setRaridade(raridadeAtualizada);
+                lblRaridadeAtual.setText(raridadeAtualizada);
             }
 
-            String serie = lblSerie_Atual.getText();
-            String serieAtualizada = txtSerie_Correcao.getText();
+            String serie = lblSerieAtual.getText();
+            String serieAtualizada = txtSerieCorrecao.getText();
             if(!serie.equals(serieAtualizada)&& !serieAtualizada.equals("")){
-                lista.lista_carta.get(id_Atual).setSerie(serieAtualizada);
-                lblSerie_Atual.setText(serieAtualizada);
+                lista.listaCartas.get(numAtual).setSerie(serieAtualizada);
+                lblSerieAtual.setText(serieAtualizada);
             }
 
-            txtNome_Correcao.clear();
-            txtRaridade_Correcao.clear();
-            txtSerie_Correcao.clear();
-            txtUrl_Correcao.clear();
+            String id = lblIdAtual.getText();
+            String idAtualizado = txtIdCorrecao.getText();
+
+            if(!id.equals(idAtualizado)&& !idAtualizado.equals("")){
+                lista.listaCartas.get(numAtual).setIdCarta(idAtualizado);
+                lblIdAtual.setText(idAtualizado);
+            }
+
+            String colecao = lblColecaoAtual.getText();
+            String colecaoAtualizado = txtColecaoCorrecao.getText();
+
+            if(!colecao.equals(colecaoAtualizado)&& !colecaoAtualizado.equals("")){
+                lista.listaCartas.get(numAtual).setColecao(colecaoAtualizado);
+                lblColecaoAtual.setText(colecaoAtualizado);
+            }
+
+            txtColecaoCorrecao.clear();
+            txtNomeCorrecao.clear();
+            txtRaridadeCorrecao.clear();
+            txtSerieCorrecao.clear();
+            txtUrlCorrecao.clear();
+            txtIdCorrecao.clear();
 
 
         }
