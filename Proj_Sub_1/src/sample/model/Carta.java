@@ -66,4 +66,16 @@ public class Carta {
     public void setSerie(String serie) {
         this.serie = serie;
     }
+
+    @Override
+    public String toString() {
+        return "Carta{" +
+                "urlImagem='" + urlImagem + '\'' +
+                ", idCarta='" + idCarta + '\'' +
+                ", colecao='" + colecao + '\'' +
+                ", nome='" + nome + '\'' +
+                ", raridade='" + raridade + '\'' +
+                ", serie='" + serie + '\'' +
+                '}';
+    }
 }

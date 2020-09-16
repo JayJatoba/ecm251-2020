@@ -10,6 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import sample.model.Carta;
 import sample.model.ListaCartas;
+import sample.teste.Aplicacao;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class Controller {
     private ListaCartas lista = new ListaCartas();
@@ -50,19 +53,14 @@ public class Controller {
         }
         else{
             inicializado = true;
-            lista.listaCartas.add(new Carta("https://images.pokemontcg.io/dp6/90_hires.png","dp6-90","Legends Awakened","Cubone","Comum","Basic"));
+            Aplicacao aplicacao = new Aplicacao();
+            lista.listaCartas.add(aplicacao.run());
 
-            //TODO Ver se lista eh statico
-            lblIdAtual.setText(lista.listaCartas.get(0).getIdCarta());
-            lblColecaoAtual.setText(""+lista.listaCartas.get(0).getColecao());
-            lblNomeAtual.setText(lista.listaCartas.get(0).getNome());
-            lblRaridadeAtual.setText(lista.listaCartas.get(0).getRaridade());
-            lblSerieAtual.setText(lista.listaCartas.get(0).getSerie());
-            Image imagem = new Image(lista.listaCartas.get(0).getUrlImagem());
-            imgImagem.setImage(imagem);
-
+//            TODO Ver se lista eh statico
+            apresentacaoCarta(lista.listaCartas.get(0));
         }
     }
+
     @FXML
     public void proximaCarta(){
         if(inicializado){
@@ -73,19 +71,14 @@ public class Controller {
                 alert.setTitle("Erro");
                 alert.setHeaderText("Nao ha mais cartas");
                 alert.showAndWait();
-            }else{
-                lblIdAtual.setText(lista.listaCartas.get(novoID).getIdCarta());
-                lblColecaoAtual.setText(lista.listaCartas.get(novoID).getColecao());
-                lblNomeAtual.setText(lista.listaCartas.get(novoID).getNome());
-                lblRaridadeAtual.setText(lista.listaCartas.get(novoID).getRaridade());
-                lblSerieAtual.setText(lista.listaCartas.get(novoID).getSerie());
-                Image imagem = new Image(lista.listaCartas.get(novoID).getUrlImagem());
-                imgImagem.setImage(imagem);
             }
+            else{apresentacaoCarta(lista.listaCartas.get(novoID));}
         }else{
             erroInicializacao();
         }
     }
+
+
     @FXML
     public void cartaAnterior(){
         if (inicializado){
@@ -96,15 +89,7 @@ public class Controller {
                 alert.setTitle("Erro");
                 alert.setHeaderText("Nao ha carta anterior");
                 alert.showAndWait();
-            }else{
-                lblIdAtual.setText(lista.listaCartas.get(novoID).getIdCarta());
-                lblColecaoAtual.setText(lista.listaCartas.get(novoID).getColecao());
-                lblNomeAtual.setText(lista.listaCartas.get(novoID).getNome());
-                lblRaridadeAtual.setText(lista.listaCartas.get(novoID).getRaridade());
-                lblSerieAtual.setText(lista.listaCartas.get(novoID).getSerie());
-                Image imagem = new Image(lista.listaCartas.get(novoID).getUrlImagem());
-                imgImagem.setImage(imagem);
-            }
+            }else{apresentacaoCarta(lista.listaCartas.get(novoID));}
         }else{erroInicializacao();
         }
     }
@@ -126,7 +111,7 @@ public class Controller {
                 alert.setHeaderText("Pelo menos uma das entradas está vazia. Favor preencher todas.");
                 alert.showAndWait();
             }else{
-//                lista.adicionarCarta(url,id, colecao,nome,raridade,serie);
+
                 lista.listaCartas.add(new Carta(url,id, colecao,nome,raridade,serie));
                 txtNomeCadastro.clear();
                 txtRaridadeCadastro.clear();
@@ -149,10 +134,8 @@ public class Controller {
             if(!url.equals(urlAtualizado) && !urlAtualizado.equals("")){
                 //Atualiza a url na lista direto
                 lista.listaCartas.get(numAtual).setUrlImagem(urlAtualizado);
-
                 //Atualiza a imagem
-                Image imagem = new Image(lista.listaCartas.get(numAtual).getUrlImagem());
-                imgImagem.setImage(imagem);
+                testeDeImagem(urlAtualizado);
             }
 
             String nome = lblNomeAtual.getText();
@@ -209,5 +192,31 @@ public class Controller {
         alert.setTitle("Erro");
         alert.setHeaderText("Sistema não inicializado");
         alert.showAndWait();
+    }
+
+    public void apresentacaoCarta(Carta cartaAtual){
+        lblIdAtual.setText(cartaAtual.getIdCarta());
+        lblColecaoAtual.setText(cartaAtual.getColecao());
+        lblNomeAtual.setText(cartaAtual.getNome());
+        lblRaridadeAtual.setText(cartaAtual.getRaridade());
+        lblSerieAtual.setText(cartaAtual.getSerie());
+
+        testeDeImagem(cartaAtual.getUrlImagem());
+    }
+
+    public void testeDeImagem(String url){
+        try{Image imagem = new Image(url);
+            imgImagem.setImage(imagem);
+        }catch(Exception e){
+            //TODO Procurar erro exato
+//            e.printStackTrace();
+            Image imagem = new Image("https://forum.vivaldi.net/assets/uploads/files/1538786976560-capturar.png");
+            imgImagem.setImage(imagem);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Este URL: \n"+url+"\nnão existe.");
+            alert.showAndWait();
+        }
+
     }
 }
