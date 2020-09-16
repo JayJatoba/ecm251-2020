@@ -8,15 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import sample.dao.CartaDAO;
 import sample.model.Carta;
 import sample.model.ListaCartas;
-import sample.teste.Aplicacao;
 
-import java.lang.reflect.InvocationTargetException;
 
 public class Controller {
     private ListaCartas lista = new ListaCartas();
     private boolean inicializado = false;
+    private CartaDAO cartaDAO = new CartaDAO();
 
     //Inicializa
     @FXML
@@ -53,18 +53,18 @@ public class Controller {
         }
         else{
             inicializado = true;
-            Aplicacao aplicacao = new Aplicacao();
-            lista.listaCartas.add(aplicacao.run());
+
+            lista.listaCartas = cartaDAO.getAll();
 
 //            TODO Ver se lista eh statico
             apresentacaoCarta(lista.listaCartas.get(0));
         }
     }
-
+    // Finalizado -----------------------
     @FXML
     public void proximaCarta(){
         if(inicializado){
-            System.out.println("Atual: "+lista.getNumAtual(lblIdAtual.getText()));
+
             int novoID = lista.getNumAtual(lblIdAtual.getText())+1;
             if(novoID== lista.listaCartas.size()){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -77,12 +77,10 @@ public class Controller {
             erroInicializacao();
         }
     }
-
-
     @FXML
     public void cartaAnterior(){
         if (inicializado){
-            System.out.println("Atual: "+lista.getNumAtual(lblIdAtual.getText()));
+
             int novoID = lista.getNumAtual(lblIdAtual.getText())-1;
             if (novoID==-1){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -93,6 +91,7 @@ public class Controller {
         }else{erroInicializacao();
         }
     }
+    // ----------------------------------
 
     @FXML
     public void cadastrar(){
@@ -111,8 +110,22 @@ public class Controller {
                 alert.setHeaderText("Pelo menos uma das entradas está vazia. Favor preencher todas.");
                 alert.showAndWait();
             }else{
+                Carta cartaNova = new Carta(id, url,nome,raridade,serie, colecao);
 
-                lista.listaCartas.add(new Carta(url,id, colecao,nome,raridade,serie));
+
+
+                // Id eh unico, logo nao pode haver repeticao
+                if(lista.idExistente(cartaNova.getIdCarta())){
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText("Ja existe esse id");
+                    alert.showAndWait();
+                    return;
+                }
+                lista.listaCartas.add(cartaNova);
+
+                cartaDAO.create(cartaNova);
                 txtNomeCadastro.clear();
                 txtRaridadeCadastro.clear();
                 txtSerieCadastro.clear();
@@ -163,8 +176,15 @@ public class Controller {
             String idAtualizado = txtIdCorrecao.getText();
 
             if(!id.equals(idAtualizado)&& !idAtualizado.equals("")){
-                lista.listaCartas.get(numAtual).setIdCarta(idAtualizado);
-                lblIdAtual.setText(idAtualizado);
+                if(lista.idExistente(idAtualizado)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText("Ja existe esse id");
+                    alert.showAndWait();
+                }else{
+                    lista.listaCartas.get(numAtual).setIdCarta(idAtualizado);
+                    lblIdAtual.setText(idAtualizado);}
+
             }
 
             String colecao = lblColecaoAtual.getText();

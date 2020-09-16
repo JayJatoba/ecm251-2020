@@ -5,7 +5,7 @@ public class Carta {
     private static int num =-1;
     private String nome,raridade,serie;
 
-    public Carta(String urlImagem, String idCarta,String colecao, String nome, String raridade, String serie) {
+    public Carta(String idCarta,String urlImagem, String nome, String raridade, String serie, String colecao) {
         this.urlImagem = urlImagem;
         this.num = num +1;
         this.idCarta = idCarta;

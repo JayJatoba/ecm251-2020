@@ -10,10 +10,6 @@ public class ListaCartas {
         listaCartas = new ArrayList<>();
     }
 
-    public void adicionarCarta(String urlImagem, String idCarta,String colecao, String nome, String raridade, String serie){
-        listaCartas.add(new Carta(urlImagem,idCarta,colecao,nome,raridade,serie));
-    }
-
     public int getNumAtual(String idAtual){
         for (int i=0;i<this.listaCartas.size();i++){
             if(idAtual.equals(this.listaCartas.get(i).getIdCarta())){
@@ -21,6 +17,15 @@ public class ListaCartas {
             }
         }
         return -1;
+    }
+
+    public boolean idExistente(String novoID){
+        for (Carta carta:
+             this.listaCartas) {
+            if(carta.getIdCarta().equals(novoID)){
+                return true;}
+        }
+        return false;
     }
 
 
