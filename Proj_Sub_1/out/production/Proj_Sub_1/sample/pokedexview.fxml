@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="440.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <VBox layoutX="386.0" layoutY="169.0" prefHeight="200.0" prefWidth="260.0" spacing="8.0">
          <children>
@@ -55,14 +55,24 @@
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
          </padding>
       </VBox>
-      <HBox layoutX="14.0" layoutY="14.0" prefHeight="241.0" prefWidth="388.0" spacing="8.0">
+      <HBox prefHeight="241.0" prefWidth="388.0" spacing="8.0">
          <children>
             <Button mnemonicParsing="false" onAction="#cartaAnterior" text="Anterior">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fx:id="imgImagem" fitHeight="177.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="23.0" prefWidth="225.0">
+                     <children>
+                        <Label text="ID:" />
+                        <Label fx:id="lblIdAtual" alignment="CENTER" text="Iniciar" />
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="imgImagem" fitHeight="177.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
             <Button mnemonicParsing="false" onAction="#proximaCarta" text="Próximo">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -76,7 +86,7 @@
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
          </padding>
       </HBox>
-      <VBox alignment="TOP_CENTER" layoutY="195.0" prefHeight="206.0" prefWidth="324.0" spacing="8.0">
+      <VBox alignment="TOP_CENTER" layoutY="233.0" prefHeight="186.0" prefWidth="324.0" spacing="8.0">
          <children>
             <GridPane hgap="4.0" prefHeight="141.0" prefWidth="308.0" vgap="4.0">
               <columnConstraints>
@@ -86,7 +96,6 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -94,25 +103,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Nome:" GridPane.rowIndex="2" />
-                  <Label text="Raridade:" GridPane.rowIndex="3" />
-                  <Label text="Série:" GridPane.rowIndex="4" />
+                  <Label text="Nome:" GridPane.rowIndex="1" />
+                  <Label text="Raridade:" GridPane.rowIndex="2" />
+                  <Label text="Série:" GridPane.rowIndex="3" />
                   <Label text="Atual" GridPane.columnIndex="1" />
                   <Label text="Correção" GridPane.columnIndex="2" />
-                  <Label fx:id="lblNomeAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="lblRaridadeAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="lblSerieAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txtNomeCorrecao" promptText="Correção Nome" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtRaridadeCorrecao" promptText="Correção Raridade" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <TextField fx:id="txtSerieCorrecao" promptText="Correção Série" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Label text="ID:" GridPane.rowIndex="1" />
-                  <Label fx:id="lblIdAtual" alignment="CENTER" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Coleção: " GridPane.rowIndex="5" />
-                  <Label fx:id="lblColecaoAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="txtIdCorrecao" prefHeight="0.0" prefWidth="128.0" promptText="Correção ID" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtColecaoCorrecao" promptText="Correção Coleção" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label text="URL: " GridPane.rowIndex="6" />
-                  <TextField fx:id="txtUrlCorrecao" prefHeight="10.0" prefWidth="131.0" promptText="Correção URL" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Label fx:id="lblNomeAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lblRaridadeAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="lblSerieAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtNomeCorrecao" promptText="Correção Nome" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtRaridadeCorrecao" promptText="Correção Raridade" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtSerieCorrecao" promptText="Correção Série" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Coleção: " GridPane.rowIndex="4" />
+                  <Label fx:id="lblColecaoAtual" text="Iniciar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtColecaoCorrecao" promptText="Correção Coleção" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label text="URL: " GridPane.rowIndex="5" />
+                  <TextField fx:id="txtUrlCorrecao" prefHeight="10.0" prefWidth="131.0" promptText="Correção URL" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                </children>
                <opaqueInsets>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

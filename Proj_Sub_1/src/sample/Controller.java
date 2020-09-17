@@ -41,7 +41,7 @@ public class Controller {
 
     // Correcao
     @FXML
-    private TextField txtNomeCorrecao, txtRaridadeCorrecao, txtSerieCorrecao, txtUrlCorrecao,txtIdCorrecao,txtColecaoCorrecao;
+    private TextField txtNomeCorrecao, txtRaridadeCorrecao, txtSerieCorrecao, txtUrlCorrecao,txtColecaoCorrecao;
 
     @FXML
     public void inicializar(){
@@ -172,20 +172,6 @@ public class Controller {
                 lblSerieAtual.setText(serieAtualizada);
             }
 
-            String id = lblIdAtual.getText();
-            String idAtualizado = txtIdCorrecao.getText();
-
-            if(!id.equals(idAtualizado)&& !idAtualizado.equals("")){
-                if(lista.idExistente(idAtualizado)){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erro");
-                    alert.setHeaderText("Ja existe esse id");
-                    alert.showAndWait();
-                }else{
-                    lista.listaCartas.get(numAtual).setIdCarta(idAtualizado);
-                    lblIdAtual.setText(idAtualizado);}
-
-            }
 
             String colecao = lblColecaoAtual.getText();
             String colecaoAtualizado = txtColecaoCorrecao.getText();
@@ -200,7 +186,7 @@ public class Controller {
             txtRaridadeCorrecao.clear();
             txtSerieCorrecao.clear();
             txtUrlCorrecao.clear();
-            txtIdCorrecao.clear();
+
 
 
         }
