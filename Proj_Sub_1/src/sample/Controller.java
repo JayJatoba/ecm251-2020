@@ -42,6 +42,8 @@ public class Controller {
     // Correcao
     @FXML
     private TextField txtNomeCorrecao, txtRaridadeCorrecao, txtSerieCorrecao, txtUrlCorrecao,txtColecaoCorrecao;
+    @FXML
+    private TextField txtIdCorrecao;
 
     @FXML
     public void inicializar(){
@@ -53,14 +55,13 @@ public class Controller {
         }
         else{
             inicializado = true;
-
             lista.listaCartas = cartaDAO.getAll();
 
 //            TODO Ver se lista eh statico
             apresentacaoCarta(lista.listaCartas.get(0));
         }
     }
-    // Finalizado -----------------------
+
     @FXML
     public void proximaCarta(){
         if(inicializado){
@@ -91,7 +92,7 @@ public class Controller {
         }else{erroInicializacao();
         }
     }
-    // ----------------------------------
+
 
     @FXML
     public void cadastrar(){
@@ -111,21 +112,18 @@ public class Controller {
                 alert.showAndWait();
             }else{
                 Carta cartaNova = new Carta(id, url,nome,raridade,serie, colecao);
-
-
-
                 // Id eh unico, logo nao pode haver repeticao
                 if(lista.idExistente(cartaNova.getIdCarta())){
 
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erro");
-                    alert.setHeaderText("Ja existe esse id");
+                    alert.setHeaderText("Já existe esse id");
                     alert.showAndWait();
                     return;
                 }
                 lista.listaCartas.add(cartaNova);
-
                 cartaDAO.create(cartaNova);
+
                 txtNomeCadastro.clear();
                 txtRaridadeCadastro.clear();
                 txtSerieCadastro.clear();
@@ -172,22 +170,38 @@ public class Controller {
                 lblSerieAtual.setText(serieAtualizada);
             }
 
-
             String colecao = lblColecaoAtual.getText();
             String colecaoAtualizado = txtColecaoCorrecao.getText();
-
             if(!colecao.equals(colecaoAtualizado)&& !colecaoAtualizado.equals("")){
                 lista.listaCartas.get(numAtual).setColecao(colecaoAtualizado);
                 lblColecaoAtual.setText(colecaoAtualizado);
             }
+
+            String id = lblIdAtual.getText();
+            String idAtualizado = txtIdCorrecao.getText();
+            if(!id.equals(idAtualizado)&& !idAtualizado.equals("")){
+                if(lista.idExistente(idAtualizado)){
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText("Ja existe esse id");
+                    alert.showAndWait();
+                    return;
+                }else{
+                lista.listaCartas.get(numAtual).setIdCarta(idAtualizado);
+                lblIdAtual.setText(idAtualizado);}
+            }
+
+            cartaDAO.update(lista.listaCartas.get(numAtual),id);
+
+            // TODO o id pode ser mudado na atualizacao de banco de dados?
 
             txtColecaoCorrecao.clear();
             txtNomeCorrecao.clear();
             txtRaridadeCorrecao.clear();
             txtSerieCorrecao.clear();
             txtUrlCorrecao.clear();
-
-
+            txtIdCorrecao.clear();
 
         }
         else {erroInicializacao();}
