@@ -14,6 +14,9 @@ import sample.model.ListaCartas;
 
 
 public class Controller {
+    /**
+     * Classe responsavel pelos metodos e manutencao da interface grafica em JavaFX
+     */
     private ListaCartas lista = new ListaCartas();
     private boolean inicializado = false;
     private CartaDAO cartaDAO = new CartaDAO();
