@@ -48,6 +48,11 @@ public class Controller {
     @FXML
     private TextField txtIdCorrecao;
 
+
+    /**
+     * Carrega todas as cartas na lista de cartas e ja exibe a primeira carta da lista. Caso a GUI ja esteja
+     * inicializada cria e mostra um alerta para o usuario
+     */
     @FXML
     public void inicializar(){
         if(inicializado){
@@ -65,6 +70,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Caso a GUI ja esteja inicializada e a proxima carta esteja contida na lista, muda a carta atualmente apresentada
+     * para a proxima carta na lista
+     */
     @FXML
     public void proximaCarta(){
         if(inicializado){
@@ -81,6 +90,11 @@ public class Controller {
             erroInicializacao();
         }
     }
+
+    /**
+     * Caso a GUI ja esteja inicializada e a proxima carta esteja contida na lista, muda a carta atualmente apresentada
+     * para carta anterior na lista
+     */
     @FXML
     public void cartaAnterior(){
         if (inicializado){
@@ -96,7 +110,13 @@ public class Controller {
         }
     }
 
-
+    /**
+     * Coleta os valores dos campos url, nome, raridade, serie, id e colecao. Se nenhum desses campos estiverem
+     * vazios, cria uma nova carta e tenta inserir na lista.<br><br>
+     * Cria e reporta um alerta ao usuario caso a nova carta ja
+     * exista dentro da lista de cartas.<br><br>
+     * Por ultimo, limpa os campos da GUI
+     */
     @FXML
     public void cadastrar(){
         if (inicializado){
@@ -138,6 +158,11 @@ public class Controller {
         }else{ erroInicializacao();}
 
     }
+
+    /**
+     *  Checa um por um o url, nome, raridade, serie, colecao e id e, caso o valor atual seja diferente do novo e nao
+     *  nulo, troca o valor <br> Por fim, checa por id duplicado e em caso afirmativo reporta o alerta
+     */
     @FXML
     public void atualizar(){
         if (inicializado){
@@ -210,6 +235,11 @@ public class Controller {
         else {erroInicializacao();}
     }
 
+    /**
+     * Cria e exibe um alerta<br>
+     *     Titulo: Erro<br>
+     *     Header: Sistema não inicializado<br>
+     */
     public void erroInicializacao(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro");
@@ -217,6 +247,11 @@ public class Controller {
         alert.showAndWait();
     }
 
+    /**
+     *
+     * @param cartaAtual
+     * Muda o id, colecao, nome, raridade, serie e foto da carta atual para a nova carta
+     */
     public void apresentacaoCarta(Carta cartaAtual){
         lblIdAtual.setText(cartaAtual.getIdCarta());
         lblColecaoAtual.setText(cartaAtual.getColecao());
@@ -227,6 +262,10 @@ public class Controller {
         testeDeImagem(cartaAtual.getUrlImagem());
     }
 
+    /**
+     *
+     * @param url Tenta puxar a imagem de um dado URL, em caso de erro cria e reporta um alerta
+     */
     public void testeDeImagem(String url){
         try{Image imagem = new Image(url);
             imgImagem.setImage(imagem);
