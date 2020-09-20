@@ -23,6 +23,11 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
         }
     }
 
+    /**
+     * Percorre o banco de dados linha por linha, criando e adicionando objetos Carta em uma Lista
+     * <br> Em caso de erro, imprime no console
+     * @return Lista com todas as cartas registradas no banco
+     */
     @Override
     public List<Carta> getAll() {
         List<Carta> cartas = new ArrayList<>();
@@ -47,6 +52,11 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
         return cartas;
     }
 
+    /**
+     * @param carta Objeto carta para ser atualizada
+     * @param idOriginal ID unico original da carta<br>
+     * Tenta atualizar os dados de uma carta existente no banco. Em caso de erro, imprime no console
+     */
     @Override
     public void update(Carta carta,String idOriginal) {
         try {
@@ -66,6 +76,10 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
         }
     }
 
+    /**
+     * @param carta Objeto Carta para ser criada<br>
+     * Tenta inserir no banco todos os dados da nova carta fornecida. Em caso de erro, imprime no console
+     */
     @Override
     public void create(Carta carta) {
         //Inserir um novo produto
@@ -86,21 +100,36 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
 
     }
 
+    /**
+     * @return Nome do banco de dados
+     */
     @Override
     public String getTableName() {
         return "cartas";
     }
 
+    /**
+     * @param table Nome do banco de dados
+     * @return Expressao de UPDATE em SQL. Todas as restricoes de nome sao substituidas por "?"
+     */
     @Override
     public String getUpdateString(String table) {
         return "UPDATE "+table+" SET id = ?, url = ?, nome = ?, raridade = ?, serie = ?, colecao = ? WHERE id = ?;";
     }
 
+    /**
+     * @param table
+     * @return Expressao de INSERT em SQL. Todas as restricoes de nome sao substituidas por "?"
+     */
     @Override
     public String getInsertString(String table) {
         return "INSERT INTO "+table +" (id,url,nome,raridade,serie,colecao) VALUES (?,?,?,?,?,?);";
     }
 
+    /**
+     * @param table
+     * @return Expressao de SELECT em SQL. Todas as restricoes de nome sao substituidas por "?"
+     */
     @Override
     public String getSelectAllString(String table) {
         return "SELECT * FROM " + table;
