@@ -241,7 +241,7 @@ public class Controller {
     /**
      * Cria e exibe um alerta<br>
      *     Titulo: Erro<br>
-     *     Header: Sistema não inicializado<br>
+     *     Header: Sistema nao inicializado<br>
      */
     public void erroInicializacao(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -251,9 +251,8 @@ public class Controller {
     }
 
     /**
-     *
-     * @param cartaAtual
      * Muda o id, colecao, nome, raridade, serie e foto da carta atual para a nova carta
+     * @param cartaAtual Carta a ser exibida
      */
     public void apresentacaoCarta(Carta cartaAtual){
         lblIdAtual.setText(cartaAtual.getIdCarta());
@@ -267,7 +266,8 @@ public class Controller {
 
     /**
      *
-     * @param url Tenta puxar a imagem de um dado URL, em caso de erro cria e reporta um alerta
+     * Tenta puxar a imagem de um dado URL, em caso de erro cria e reporta um alerta
+     * @param url URL da imagem da carta
      */
     public void testeDeImagem(String url){
         try{Image imagem = new Image(url);

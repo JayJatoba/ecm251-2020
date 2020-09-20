@@ -69,48 +69,52 @@ public class Carta {
     }
 
     /**
+     * Muda o ID unico da carta
      * @param idCarta
-     * Muda o ID unico da carta para a String recebida
      */
     public void setIdCarta(String idCarta) {
         this.idCarta = idCarta;
     }
 
     /**
+     * Muda o URL da imagem da carta
      * @param urlImagem
-     * Muda o URL da imagem da carta para a String recebida
      */
     public void setUrlImagem(String urlImagem) {
         this.urlImagem = urlImagem;
     }
 
     /**
+     *
+     * Muda a colecao da carta
      * @param colecao
-     * Muda a colecao da  carta para a String recebida
      */
     public void setColecao(String colecao) {
         this.colecao = colecao;
     }
 
     /**
+     *
+     * Muda o nome da carta
      * @param nome
-     * Muda o nome da carta para a String recebida
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     /**
+     *
+     * Muda a raridade da carta
      * @param raridade
-     * Muda a raridade da carta para a String recebida
      */
     public void setRaridade(String raridade) {
         this.raridade = raridade;
     }
 
     /**
+     *
+     * Muda serie da carta
      * @param serie
-     * Muda serie da carta para a String recebida
      */
     public void setSerie(String serie) {
         this.serie = serie;

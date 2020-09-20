@@ -18,9 +18,10 @@ public class ListaCartas {
     }
 
     /**
+     * Caso nao encontre o ID na lista, retorna -1
      * @param idAtual ID unico da carta procurada
      * @return indice da posicao da carta na lista<br>
-     * Caso nao encontre o ID na lista, retorna -1
+     *
      */
     public int getNumAtual(String idAtual){
         for (int i=0;i<this.listaCartas.size();i++){
@@ -32,7 +33,7 @@ public class ListaCartas {
     }
 
     /**
-     * @param novoID ID unico da carta para ser checado<br>
+     * @param novoID ID unico da carta para ser checado
      * @return True, caso ja exista uma carta com o ID fornecido e false no caso contrario
      */
     public boolean idExistente(String novoID){

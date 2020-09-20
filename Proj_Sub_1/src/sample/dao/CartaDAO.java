@@ -53,9 +53,10 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
     }
 
     /**
+     * Tenta atualizar os dados de uma carta existente no banco. Em caso de erro, imprime no console
      * @param carta Objeto carta para ser atualizada
      * @param idOriginal ID unico original da carta<br>
-     * Tenta atualizar os dados de uma carta existente no banco. Em caso de erro, imprime no console
+     *
      */
     @Override
     public void update(Carta carta,String idOriginal) {
@@ -77,8 +78,9 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
     }
 
     /**
-     * @param carta Objeto Carta para ser criada<br>
      * Tenta inserir no banco todos os dados da nova carta fornecida. Em caso de erro, imprime no console
+     * @param carta Objeto Carta para ser criada
+     *
      */
     @Override
     public void create(Carta carta) {
