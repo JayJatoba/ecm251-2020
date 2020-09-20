@@ -12,14 +12,14 @@ import sample.dao.CartaDAO;
 import sample.model.Carta;
 import sample.model.ListaCartas;
 
-
+/**
+ * Classe responsavel pelos metodos e manutencao da interface grafica em JavaFX
+ * @author Andre Lebrao 18.00356-7
+ * @author Joao Guilherme Jatoba 18.01790-8
+ * @since 15/09/2020
+ */
 public class Controller {
-    /**
-     * Classe responsavel pelos metodos e manutencao da interface grafica em JavaFX
-     * @author Andre Lebrao 18.00356-7
-     * @author Joao Guilherme Jatoba 18.01790-8
-     * @since 15/09/2020
-     */
+
     private ListaCartas lista = new ListaCartas();
     private boolean inicializado = false;
     private CartaDAO cartaDAO = new CartaDAO();
