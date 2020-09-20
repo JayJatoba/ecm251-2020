@@ -1,5 +1,11 @@
 package sample.model;
 
+/**
+ * Inclui somente construtor, getters e setters
+ * @author Andre Lebrao 18.00356-7
+ * @author Joao Guilherme Jatobá 18.01790-8
+ * @since 15/09/2020
+ */
 public class Carta {
     private String urlImagem,idCarta, colecao;
     private String nome,raridade,serie;
@@ -12,9 +18,6 @@ public class Carta {
      * @param raridade raridadde do Pokemon ex: (Uncommon)
      * @param serie serie do pokemon ex: (XY)
      * @param colecao colecao a qual a carta pertence ex: (BREAKthrough)
-     * @author Andre Lebrao 18.00356-7
-     * @author Joao Guilherme Jatobá 18.01790-8
-     * @since 15/09/2020
      *
      */
     public Carta(String idCarta,String urlImagem, String nome, String raridade, String serie, String colecao) {
