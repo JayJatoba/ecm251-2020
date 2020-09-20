@@ -16,6 +16,9 @@ import sample.model.ListaCartas;
 public class Controller {
     /**
      * Classe responsavel pelos metodos e manutencao da interface grafica em JavaFX
+     * @author Andre Lebrao 18.00356-7
+     * @author Joao Guilherme Jatoba 18.01790-8
+     * @since 15/09/2020
      */
     private ListaCartas lista = new ListaCartas();
     private boolean inicializado = false;
@@ -58,7 +61,7 @@ public class Controller {
         if(inicializado){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Aviso");
-            alert.setHeaderText("Sistema já inicializado, pode continuar");
+            alert.setHeaderText("Sistema ja inicializado, pode continuar");
             alert.showAndWait();
         }
         else{
@@ -131,7 +134,7 @@ public class Controller {
             id.equals("") || colecao.equals("")){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erro");
-                alert.setHeaderText("Pelo menos uma das entradas está vazia. Favor preencher todas.");
+                alert.setHeaderText("Pelo menos uma das entradas esta vazia. Favor preencher todas.");
                 alert.showAndWait();
             }else{
                 Carta cartaNova = new Carta(id, url,nome,raridade,serie, colecao);
@@ -140,7 +143,7 @@ public class Controller {
 
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erro");
-                    alert.setHeaderText("Já existe esse id");
+                    alert.setHeaderText("Ja existe esse id");
                     alert.showAndWait();
                     return;
                 }
