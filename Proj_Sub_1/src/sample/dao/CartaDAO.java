@@ -5,14 +5,13 @@ import sample.model.Carta;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Andre Lebrao 18.00356-7
+ * @author Joao Guilherme Jatoba 18.01790-8
+ * @since 15/09/2020
+ */
 public class CartaDAO implements DAO<Carta>,DAOFields{
     private Connection connection;
-    /**
-     * @author Andre Lebrao 18.00356-7
-     * @author Joao Guilherme Jatoba 18.01790-8
-     * @since 15/09/2020
-     */
     private String myDBConnectionString = "jdbc:sqlite:cartas.db";
 
 
