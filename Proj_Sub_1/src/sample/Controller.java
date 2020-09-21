@@ -68,7 +68,6 @@ public class Controller {
             inicializado = true;
             lista.listaCartas = cartaDAO.getAll();
 
-//            TODO Ver se lista eh statico
             apresentacaoCarta(lista.listaCartas.get(0));
         }
     }
@@ -150,12 +149,14 @@ public class Controller {
                 lista.listaCartas.add(cartaNova);
                 cartaDAO.create(cartaNova);
 
-                txtNomeCadastro.clear();
-                txtRaridadeCadastro.clear();
-                txtSerieCadastro.clear();
-                txtUrlCadastro.clear();
-                txtIdCadastro.clear();
-                txtColecaoCadastro.clear();
+//                txtNomeCadastro.clear();
+//                txtRaridadeCadastro.clear();
+//                txtSerieCadastro.clear();
+//                txtUrlCadastro.clear();
+//                txtIdCadastro.clear();
+//                txtColecaoCadastro.clear();
+                limpaCampos("cadastro");
+
 
             }
         }else{ erroInicializacao();}
@@ -225,14 +226,15 @@ public class Controller {
 
             cartaDAO.update(lista.listaCartas.get(numAtual),id);
 
-            // TODO o id pode ser mudado na atualizacao de banco de dados?
 
-            txtColecaoCorrecao.clear();
-            txtNomeCorrecao.clear();
-            txtRaridadeCorrecao.clear();
-            txtSerieCorrecao.clear();
-            txtUrlCorrecao.clear();
-            txtIdCorrecao.clear();
+
+//            txtColecaoCorrecao.clear();
+//            txtNomeCorrecao.clear();
+//            txtRaridadeCorrecao.clear();
+//            txtSerieCorrecao.clear();
+//            txtUrlCorrecao.clear();
+//            txtIdCorrecao.clear();
+            limpaCampos("correcao");
 
         }
         else {erroInicializacao();}
@@ -281,6 +283,32 @@ public class Controller {
             alert.setTitle("Erro");
             alert.setHeaderText("Este URL: \n"+url+"\nnão existe.");
             alert.showAndWait();
+        }
+
+    }
+
+    /**
+     *
+     * Funcao que ira limpar campos onde pode se digitar dados das cartas: <br>
+     *     Campos de Correcao ou de Cadastro
+     * @param opcao Opcao que depende de quando a funcao for usada
+     */
+    public void limpaCampos(String opcao){
+
+        if(opcao.equals("correcao")){
+            txtColecaoCorrecao.clear();
+            txtNomeCorrecao.clear();
+            txtRaridadeCorrecao.clear();
+            txtSerieCorrecao.clear();
+            txtUrlCorrecao.clear();
+            txtIdCorrecao.clear();
+        }else if(opcao.equals("cadastro")){
+            txtNomeCadastro.clear();
+            txtRaridadeCadastro.clear();
+            txtSerieCadastro.clear();
+            txtUrlCadastro.clear();
+            txtIdCadastro.clear();
+            txtColecaoCadastro.clear();
         }
 
     }
