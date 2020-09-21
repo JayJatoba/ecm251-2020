@@ -149,12 +149,7 @@ public class Controller {
                 lista.listaCartas.add(cartaNova);
                 cartaDAO.create(cartaNova);
 
-//                txtNomeCadastro.clear();
-//                txtRaridadeCadastro.clear();
-//                txtSerieCadastro.clear();
-//                txtUrlCadastro.clear();
-//                txtIdCadastro.clear();
-//                txtColecaoCadastro.clear();
+
                 limpaCampos("cadastro");
 
 
@@ -228,12 +223,6 @@ public class Controller {
 
 
 
-//            txtColecaoCorrecao.clear();
-//            txtNomeCorrecao.clear();
-//            txtRaridadeCorrecao.clear();
-//            txtSerieCorrecao.clear();
-//            txtUrlCorrecao.clear();
-//            txtIdCorrecao.clear();
             limpaCampos("correcao");
 
         }
