@@ -73,7 +73,7 @@ public class Carta {
 
     /**
      * Muda o ID unico da carta
-     * @param idCarta
+     * @param idCarta Novo ID da carta
      */
     public void setIdCarta(String idCarta) {
         this.idCarta = idCarta;
@@ -81,7 +81,7 @@ public class Carta {
 
     /**
      * Muda o URL da imagem da carta
-     * @param urlImagem
+     * @param urlImagem Nova URL da carta
      */
     public void setUrlImagem(String urlImagem) {
         this.urlImagem = urlImagem;
@@ -90,7 +90,7 @@ public class Carta {
     /**
      *
      * Muda a colecao da carta
-     * @param colecao
+     * @param colecao Nova colecao da carta
      */
     public void setColecao(String colecao) {
         this.colecao = colecao;
@@ -99,7 +99,7 @@ public class Carta {
     /**
      *
      * Muda o nome da carta
-     * @param nome
+     * @param nome Novo nome da carta
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -108,7 +108,7 @@ public class Carta {
     /**
      *
      * Muda a raridade da carta
-     * @param raridade
+     * @param raridade Nova raridade da carta
      */
     public void setRaridade(String raridade) {
         this.raridade = raridade;
@@ -117,7 +117,7 @@ public class Carta {
     /**
      *
      * Muda serie da carta
-     * @param serie
+     * @param serie Nova serie da carta
      */
     public void setSerie(String serie) {
         this.serie = serie;
