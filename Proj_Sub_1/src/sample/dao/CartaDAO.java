@@ -120,7 +120,7 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
     }
 
     /**
-     * @param table
+     * @param table Nome do banco de dados
      * @return Expressao de INSERT em SQL. Todas as restricoes de nome sao substituidas por "?"
      */
     @Override
@@ -129,7 +129,7 @@ public class CartaDAO implements DAO<Carta>,DAOFields{
     }
 
     /**
-     * @param table
+     * @param table Nome do banco de dados
      * @return Expressao de SELECT em SQL. Todas as restricoes de nome sao substituidas por "?"
      */
     @Override
