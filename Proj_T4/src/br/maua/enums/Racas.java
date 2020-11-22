@@ -1,4 +1,4 @@
-package sample.enums;
+package br.maua.enums;
 
 public enum Racas {
     HUMANO, ANAO, DAHLLAN,ELFO, GOBLIN, LEFOU, MINOTAURO, QAREEN, GOLEM, HYNNE, KLIREN, MEDUSA,OSTEON, SILFIDE, SURAGGEL,TROG

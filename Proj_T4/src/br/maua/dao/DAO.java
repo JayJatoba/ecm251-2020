@@ -1,4 +1,4 @@
-package sample.dao;
+package br.maua.dao;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package sample.enums;
+package br.maua.enums;
 
 public enum Profissoes {
     ARCANISTA, BARBARO, BARDO, BUCANEIRO, CACADOR, CAVALEIRO, CLERIGO, DRUIDA, GUERREIRO, INVENTOR, LADINO, LUTADOR, NOBRE, PALADINO
