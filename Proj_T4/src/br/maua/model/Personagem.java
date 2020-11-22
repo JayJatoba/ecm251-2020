@@ -4,78 +4,79 @@ import br.maua.enums.Profissoes;
 import br.maua.enums.Racas;
 
 public class Personagem {
-    private String nome, urlFoto;
-    private int mana, atq, atqMag, def, defMag, vel, destreza, exp, nivel;
-    private Profissoes prof;
+    private String nome;
     private Racas raca;
+    private Profissoes prof;
+    private int mana, atq, atqMag, def, defMag, vel, destreza, exp, nivel;
+
+    public Personagem(String nome, Racas raca, Profissoes prof, int mana, int atq, int atqMag, int def, int defMag, int vel, int destreza, int exp, int nivel) {
+        this.nome = nome;
+        this.raca = raca;
+        this.prof = prof;
+        this.mana = mana;
+        this.atq = atq;
+        this.atqMag = atqMag;
+        this.def = def;
+        this.defMag = defMag;
+        this.vel = vel;
+        this.destreza = destreza;
+        this.exp = exp;
+        this.nivel = nivel;
+    }
 
     public String getNome() {
         return nome;
     }
-
-    public String getUrlFoto() {
-        return urlFoto;
+    public Racas getRaca() {
+        return raca;
     }
-
+    public Profissoes getProf() {
+        return prof;
+    }
     public int getMana() {
         return mana;
     }
-
     public int getAtq() {
         return atq;
     }
-
     public int getAtqMag() {
         return atqMag;
     }
-
     public int getDef() {
         return def;
     }
-
     public int getDefMag() {
         return defMag;
     }
-
     public int getVel() {
         return vel;
     }
-
     public int getDestreza() {
         return destreza;
     }
-
     public int getExp() {
         return exp;
     }
-
     public int getNivel() {
         return nivel;
     }
 
-    public Profissoes getProf() {
-        return prof;
-    }
 
-    public Racas getRaca() {
-        return raca;
-    }
 
     @Override
     public String toString() {
-        return '\n' +"Personagem:" +'\n' +
-                "Nome = " + nome + '\n' +
-                "Raca = " + raca +'\n'+
-                "Profissao = " + prof +'\n' +
-                "Mana = " + mana +'\n' +
-                "Ataque = " + atq +'\n' +
-                "Ataquq Magico = " + atqMag +'\n' +
-                "Defesa = " + def +'\n' +
-                "Defesa Magica = " + defMag +'\n' +
-                "Velocidade = " + vel +'\n' +
-                "Destreza = "+destreza +'\n' +
-                "Experiencia = " + exp +'\n' +
-                "Nivel = " + nivel +'\n'+
-                '\n';
+        return '\n'+"Personagem:" +'\n' +
+                '\t'+"Nome = " + nome + '\n' +
+                '\t'+"Raca = " + raca +'\n'+
+                '\t'+"Profissao = " + prof +'\n' +
+                '\t'+"Mana = " + mana +'\n' +
+                '\t'+"Ataque = " + atq +'\n' +
+                '\t'+"Ataque Magico = " + atqMag +'\n' +
+                '\t'+"Defesa = " + def +'\n' +
+                '\t'+"Defesa Magica = " + defMag +'\n' +
+                '\t'+"Velocidade = " + vel +'\n' +
+                '\t'+"Destreza = "+destreza +'\n' +
+                '\t'+"Experiencia = " + exp +'\n' +
+                '\t'+"Nivel = " + nivel +'\n';
     }
 }
