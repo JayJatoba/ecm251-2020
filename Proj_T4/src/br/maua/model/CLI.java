@@ -43,9 +43,17 @@ public class CLI {
     private static void criacao(){
         System.out.println("Nome do personagem:");
         String nome =sc.nextLine();
+        for (Personagem personagem:
+                lista) {
+            if (personagem.getNome().equals(nome)){
+                System.out.println("Personagem com esse nome ja existente");
+                return;
+            }
+        }
         Racas raca=escolherRaca();
         Profissoes prof = escolherProfissao();
-        lista.add(new Personagem(nome, raca, prof, 15,7,8,16,12,13,16,5000,1));
+
+        lista.add(new Personagem(nome, raca, prof, pegarValor("Mana"),pegarValor("Ataque"),pegarValor("Ataque Magico"),pegarValor("Defesa"),pegarValor("Defesa Magica"),pegarValor("Velocidade"),pegarValor("Destreza"),pegarValor("Experiencia"),pegarValor("Nivel")));
     }
     private static void alterar(){
         System.out.println("Alterando");
@@ -58,7 +66,6 @@ public class CLI {
             System.out.println(personagem);
         }
     }
-
     private static void deletar(){
         System.out.println("Deletar");
         for (Personagem personagem:
@@ -77,7 +84,6 @@ public class CLI {
         }
         System.out.println("Personagem com nome: \'"+nome+"\' nao encontrado");
     }
-
     private static Racas escolherRaca(){
         System.out.println("Escolha a sua raca: \n1- Humano\n2- Anao\n3- Dahllan\n4- Elfo\n5- Goblin\n6- Lefou\n7- Minotauro\n8- Qareen\n9- Golem \n10- Hynne\n11- Kliren\n12- Medusa\n13- Osteon\n14- Silfide\n15- Suraggel\n16- Trog");
         int opcao = sc.nextInt();
@@ -153,5 +159,13 @@ public class CLI {
             default:
                 return escolherProfissao();
         }
+    }
+    private static int pegarValor(String tipo){
+        System.out.println("Digite o valor (sempre maior que 0) do atributo: "+tipo);
+        int valor = sc.nextInt();
+        if (valor<0){
+            return pegarValor(tipo);
+        }
+        return valor;
     }
 }
