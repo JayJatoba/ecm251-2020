@@ -1,5 +1,12 @@
 package br.maua.enums;
-
+/**
+ *
+ * Arquivo enum que representa as profissoes que um personagem pode adotar
+ *
+ * @author Andre Lebrao 18.00356-7
+ * @author Joao Guilherme Jatoba 18.01790-8
+ * @since 22/11/2020
+ */
 public enum Profissoes {
     ARCANISTA{
         /**
