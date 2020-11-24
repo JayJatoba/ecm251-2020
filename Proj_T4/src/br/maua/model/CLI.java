@@ -31,7 +31,8 @@ public class CLI {
                     consultar();
                     break;
                 case 4:
-                    deletar();
+                    System.out.println("Nome: ");
+                    deletar(sc.nextLine());
                     break;
                 case 0:
                     flag=false;
@@ -60,6 +61,7 @@ public class CLI {
     private static void alterar(){
         boolean flagAlterar = false;
         Personagem personagemAlterar = null;
+        String nomeOriginal = null;
         System.out.println("Nome do personagem: ");
         String nome = sc.nextLine();
         for (Personagem personagem :
@@ -67,6 +69,7 @@ public class CLI {
             if(personagem.getNome().equals(nome)) {
                 flagAlterar = true;
                 personagemAlterar = personagem;
+                nomeOriginal = personagem.getNome();
                 break;
             }
 
@@ -76,47 +79,59 @@ public class CLI {
         while(flagAlterar){
             System.out.println("Escolha o que alterar");
             System.out.println("1 - Nome\n2 - Raca\n3 - Profissão\n4 - Mana\n5 - Ataque\n6 - Ataque Mágico\n7 - " +
-                    "Defesa\n8 - Defesa Mágica\n9 - Velocidade\n10 - Destreza\n11 - Experiência\n12 - Nível");
+                    "Defesa\n8 - Defesa Mágica\n9 - Velocidade\n10 - Destreza\n11 - Experiência\n12 - Nível\n0 - Sair");
             int opcao = sc.nextInt();
             sc.nextLine();
             switch (opcao){
                 case 1:
                     System.out.println("Novo nome: ");
+                    personagemAlterar.setNome(sc.nextLine());
                     break;
                 case 2:
-                    System.out.println("Nova raca: ");
+                    personagemAlterar.setRaca(escolherRaca().toString());
                     break;
                 case 3:
-                    System.out.println("Nova Profissão");
+                    personagemAlterar.setProf(escolherProfissao().toString());
                     break;
                 case 4:
-                    personagemAlterar.setMana(pegarValor("mana"));
+                    personagemAlterar.setMana(pegarValor("Mana"));
                     break;
                 case 5:
-                    personagemAlterar.setAtq(pegarValor("atq"));
+                    personagemAlterar.setAtq(pegarValor("Ataque"));
                     break;
                 case 6:
-                    System.out.println("");
+                    personagemAlterar.setAtqMag(pegarValor("Ataque Mágico"));
                     break;
                 case 7:
-                    System.out.println("");
+                    personagemAlterar.setDef(pegarValor("Defesa"));
                     break;
                 case 8:
-                    System.out.println("");
+                    personagemAlterar.setDefMag(pegarValor("Defesa Mágica"));
                     break;
                 case 9:
-                    System.out.println("");
+                    personagemAlterar.setVel(pegarValor("Velocidade"));
                     break;
                 case 10:
-                    System.out.println("");
+                    personagemAlterar.setDestreza(pegarValor("Destreza"));
                     break;
                 case 11:
-                    System.out.println("");
+                    personagemAlterar.setExp(pegarValor("EXP"));
                     break;
                 case 12:
-                    System.out.println("");
+                    personagemAlterar.setNivel(pegarValor("Nível"));
+                    break;
+                case 0:
+                    flagAlterar = false;
                     break;
             }
+        }
+
+        if(nomeOriginal.equals(personagemAlterar.getNome()))
+            pDAO.updateAll(personagemAlterar);
+        else{
+            deletar(personagemAlterar.getNome());
+            lista.add(personagemAlterar);
+            pDAO.create(personagemAlterar);
         }
     }
     private static void consultar(){
@@ -127,17 +142,11 @@ public class CLI {
             System.out.println(personagem);
         }
     }
-    private static void deletar(){
-        System.out.println("Deletar");
-        for (Personagem personagem:
-                lista) {
-            System.out.println(personagem.getNome());
-        }
-        System.out.println("Nome para deletar: ");
-        String nome = sc.nextLine();
+    private static void deletar(String nome){
         for (Personagem personagem:
                 lista) {
             if (personagem.getNome().equals(nome)){
+                pDAO.delete(personagem);
                 lista.remove(personagem);
                 System.out.println(personagem.getNome()+" deletado com sucesso");
                 return;
