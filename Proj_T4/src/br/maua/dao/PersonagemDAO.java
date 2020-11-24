@@ -11,7 +11,7 @@ import java.util.List;
  *     Implementa interfaces DAO e DAOFields
  * @author Andre Lebrao 18.00356-7
  * @author Joao Guilherme Jatoba 18.01790-8
- * @since 28/09/2020
+ * @since 24/11/2020
  */
 public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
     private Connection connection;
@@ -32,7 +32,7 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
 
     /**
      * Classe de retorno de lista
-     * @return Lista de animes
+     * @return Lista de personagens
      */
     @Override
     public List<Personagem> getAll() {
@@ -80,6 +80,10 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
         }
     }
 
+    /**
+     * Metodo usado para atualizar variaveis de um personagem do banco de dados
+     * @param personagem Personagem que ira ter variaveis mudadas
+     */
     @Override
     public void updateAll(Personagem personagem) {
         try{
@@ -129,6 +133,10 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
         }
     }
 
+    /**
+     * Metodo que ira deletar um persongaem do banco de dados
+     * @param personagem Personagem a ser deletado
+     */
     @Override
     public void delete(Personagem personagem) {
         try{
