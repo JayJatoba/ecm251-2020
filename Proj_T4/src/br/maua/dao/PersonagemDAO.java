@@ -129,6 +129,17 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
         }
     }
 
+    @Override
+    public void delete(Personagem personagem) {
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(getDeleteString(getTableName()));
+            preparedStatement.setString(1, personagem.getNome());
+            preparedStatement.executeUpdate();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     /**
      *
      * @return Nome da tabela (personagens)
@@ -167,5 +178,10 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
     @Override
     public String getSelectAllString(String table) {
         return "SELECT * FROM " + table;
+    }
+
+    @Override
+    public String getDeleteString(String table) {
+        return "DELETE FROM "+ table +" WHERE nome = ?";
     }
 }

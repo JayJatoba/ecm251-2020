@@ -1,5 +1,6 @@
 package br.maua.model;
 
+import br.maua.dao.PersonagemDAO;
 import br.maua.enums.Profissoes;
 import br.maua.enums.Racas;
 
@@ -11,8 +12,9 @@ public class CLI {
     private static boolean flag=true;
     private static Scanner sc = new Scanner(System.in);
     private static List<Personagem> lista = new ArrayList<>();
+    private static PersonagemDAO pDAO = new PersonagemDAO();
     public static void run(){
-
+        lista = pDAO.getAll();
         int opcao;
         while(flag){
             System.out.println("1 - Criar novo personagem\n2 - Alterar personagem existente\n3 - Consultar personagens existentes\n4 - Deletar personagem\n0 - Sair");
@@ -56,7 +58,66 @@ public class CLI {
         lista.add(new Personagem(nome, raca, prof, pegarValor("Mana"),pegarValor("Ataque"),pegarValor("Ataque Magico"),pegarValor("Defesa"),pegarValor("Defesa Magica"),pegarValor("Velocidade"),pegarValor("Destreza"),pegarValor("Experiencia"),pegarValor("Nivel")));
     }
     private static void alterar(){
-        System.out.println("Alterando");
+        boolean flagAlterar = false;
+        Personagem personagemAlterar = null;
+        System.out.println("Nome do personagem: ");
+        String nome = sc.nextLine();
+        for (Personagem personagem :
+                lista) {
+            if(personagem.getNome().equals(nome)) {
+                flagAlterar = true;
+                personagemAlterar = personagem;
+                break;
+            }
+
+        }
+        if(!flagAlterar)
+            System.out.println("Personagem não existe\n");
+        while(flagAlterar){
+            System.out.println("Escolha o que alterar");
+            System.out.println("1 - Nome\n2 - Raca\n3 - Profissão\n4 - Mana\n5 - Ataque\n6 - Ataque Mágico\n7 - " +
+                    "Defesa\n8 - Defesa Mágica\n9 - Velocidade\n10 - Destreza\n11 - Experiência\n12 - Nível");
+            int opcao = sc.nextInt();
+            sc.nextLine();
+            switch (opcao){
+                case 1:
+                    System.out.println("Novo nome: ");
+                    break;
+                case 2:
+                    System.out.println("Nova raca: ");
+                    break;
+                case 3:
+                    System.out.println("Nova Profissão");
+                    break;
+                case 4:
+                    personagemAlterar.setMana(pegarValor("mana"));
+                    break;
+                case 5:
+                    personagemAlterar.setAtq(pegarValor("atq"));
+                    break;
+                case 6:
+                    System.out.println("");
+                    break;
+                case 7:
+                    System.out.println("");
+                    break;
+                case 8:
+                    System.out.println("");
+                    break;
+                case 9:
+                    System.out.println("");
+                    break;
+                case 10:
+                    System.out.println("");
+                    break;
+                case 11:
+                    System.out.println("");
+                    break;
+                case 12:
+                    System.out.println("");
+                    break;
+            }
+        }
     }
     private static void consultar(){
         System.out.println("Consultando");
@@ -87,6 +148,7 @@ public class CLI {
     private static Racas escolherRaca(){
         System.out.println("Escolha a sua raca: \n1- Humano\n2- Anao\n3- Dahllan\n4- Elfo\n5- Goblin\n6- Lefou\n7- Minotauro\n8- Qareen\n9- Golem \n10- Hynne\n11- Kliren\n12- Medusa\n13- Osteon\n14- Silfide\n15- Suraggel\n16- Trog");
         int opcao = sc.nextInt();
+        sc.nextLine();
         switch (opcao){
             case 1:
                 return Racas.HUMANO;

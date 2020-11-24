@@ -61,6 +61,55 @@ public class Personagem {
     public int getDef() {
         return def;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setRaca(String raca) {
+        this.raca = raca;
+    }
+
+    public void setProf(String prof) {
+        this.prof = prof;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public void setAtq(int atq) {
+        this.atq = atq;
+    }
+
+    public void setAtqMag(int atqMag) {
+        this.atqMag = atqMag;
+    }
+
+    public void setDef(int def) {
+        this.def = def;
+    }
+
+    public void setDefMag(int defMag) {
+        this.defMag = defMag;
+    }
+
+    public void setVel(int vel) {
+        this.vel = vel;
+    }
+
+    public void setDestreza(int destreza) {
+        this.destreza = destreza;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
     public int getDefMag() {
         return defMag;
     }
