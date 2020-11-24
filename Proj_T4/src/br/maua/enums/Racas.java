@@ -9,6 +9,9 @@ package br.maua.enums;
  * @since 22/11/2020
  */
 public enum Racas {
+    /**
+     * Raca Humano
+     */
     HUMANO{/**
      * @return String que representa a raca Humano
      */
@@ -17,6 +20,9 @@ public enum Racas {
         return "Humano";
     }
     },
+    /**
+     * Raca Anao
+     */
     ANAO{/**
      * @return String que representa a raca Anao
      */
@@ -25,6 +31,9 @@ public enum Racas {
         return "Anao";
     }
     },
+    /**
+     * Raca Dahllan
+     */
     DAHLLAN{/**
      * @return String que representa a raca Dahllan
      */
@@ -33,6 +42,9 @@ public enum Racas {
         return "Dahllan";
     }
     },
+    /**
+     * Raca Elfo
+     */
     ELFO{/**
      * @return String que representa a raca Elfo
      */
@@ -41,6 +53,9 @@ public enum Racas {
         return "Elfo";
     }
     },
+    /**
+     * Raca Goblin
+     */
     GOBLIN{/**
      * @return String que representa a raca Goblin
      */
@@ -49,6 +64,9 @@ public enum Racas {
         return "Goblin";
     }
     },
+    /**
+     * Raca Lefou
+     */
     LEFOU{/**
      * @return String que representa a raca Lefou
      */
@@ -57,6 +75,9 @@ public enum Racas {
         return "Lefou";
     }
     },
+    /**
+     * Raca Minotauro
+     */
     MINOTAURO{/**
      * @return String que representa a raca Minotauro
      */
@@ -65,6 +86,9 @@ public enum Racas {
         return "Minotauro";
     }
     },
+    /**
+     * Raca Qareen
+     */
     QAREEN{/**
      * @return String que representa a raca Qareen
      */
@@ -73,6 +97,9 @@ public enum Racas {
         return "Qareen";
     }
     },
+    /**
+     * Raca Golem
+     */
     GOLEM{/**
      * @return String que representa a raca Golem
      */
@@ -81,6 +108,9 @@ public enum Racas {
         return "Golem";
     }
     },
+    /**
+     * Raca Hynne
+     */
     HYNNE{/**
      * @return String que representa a raca Hynne
      */
@@ -89,6 +119,9 @@ public enum Racas {
         return "Hynne";
     }
     },
+    /**
+     * Raca Kliren
+     */
     KLIREN{/**
      * @return String que representa a raca Kliren
      */
@@ -97,6 +130,9 @@ public enum Racas {
         return "Kliren";
     }
     },
+    /**
+     * Raca Medusa
+     */
     MEDUSA{/**
      * @return String que representa a raca Medusa
      */
@@ -105,6 +141,9 @@ public enum Racas {
         return "Medusa";
     }
     },
+    /**
+     * Raca Osteon
+     */
     OSTEON{/**
      * @return String que representa a raca Osteon
      */
@@ -113,6 +152,9 @@ public enum Racas {
         return "Osteon";
     }
     },
+    /**
+     * Raca Silfide
+     */
     SILFIDE{/**
      * @return String que representa a raca Silfide
      */
@@ -121,6 +163,9 @@ public enum Racas {
         return "Silfide";
     }
     },
+    /**
+     * Raca Suraggel
+     */
     SURAGGEL{/**
      * @return String que representa a raca Suraggel
      */
@@ -129,6 +174,9 @@ public enum Racas {
         return "Suraggel";
     }
     },
+    /**
+     * Raca Trog
+     */
     TROG{/**
      * @return String que representa a raca Trog
      */

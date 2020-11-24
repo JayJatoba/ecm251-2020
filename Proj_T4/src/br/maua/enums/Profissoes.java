@@ -8,6 +8,9 @@ package br.maua.enums;
  * @since 22/11/2020
  */
 public enum Profissoes {
+    /**
+     * Profissao Arcanista
+     */
     ARCANISTA{
         /**
          * @return String que representa a profissao Arcanista
@@ -17,6 +20,9 @@ public enum Profissoes {
             return "Arcanista";
         }
     },
+    /**
+     * Profissao Barbaro
+     */
     BARBARO{
         /**
          * @return String que representa a profissao Barbaro
@@ -26,6 +32,9 @@ public enum Profissoes {
             return "Barbaro";
         }
     },
+    /**
+     * Profissao Bardo
+     */
     BARDO{
         /**
          * @return String que representa a profissao Bardo
@@ -35,6 +44,9 @@ public enum Profissoes {
             return "Bardo";
         }
     },
+    /**
+     * Profissao Bucaneiro
+     */
     BUCANEIRO{
         /**
          * @return String que representa a profissao Bucaneiro
@@ -44,6 +56,9 @@ public enum Profissoes {
             return "Bucaneiro";
         }
     },
+    /**
+     * Profissao Cacador
+     */
     CACADOR{
         /**
          * @return String que representa a profissao Cacador
@@ -53,6 +68,9 @@ public enum Profissoes {
             return "Cacador";
         }
     },
+    /**
+     * Profissao Cavaleiro
+     */
     CAVALEIRO{
         /**
          * @return String que representa a profissao Cavaleiro
@@ -62,6 +80,9 @@ public enum Profissoes {
             return "Cavaleiro";
         }
     },
+    /**
+     * Profissao Clerigo
+     */
     CLERIGO{
         /**
          * @return String que representa a profissao Clerigo
@@ -71,6 +92,9 @@ public enum Profissoes {
             return "Clerigo";
         }
     },
+    /**
+     * Profissao Druida
+     */
     DRUIDA{
         /**
          * @return String que representa a profissao Druida
@@ -80,6 +104,9 @@ public enum Profissoes {
             return "Druida";
         }
     },
+    /**
+     * Profissao Guerreiro
+     */
     GUERREIRO{
         /**
          * @return String que representa a profissao Guerreiro
@@ -89,6 +116,9 @@ public enum Profissoes {
             return "Guerreiro";
         }
     },
+    /**
+     * Profissao Inventor
+     */
     INVENTOR{
         /**
          * @return String que representa a profissao Inventor
@@ -98,6 +128,9 @@ public enum Profissoes {
             return "Inventor";
         }
     },
+    /**
+     * Profissao Ladino
+     */
     LADINO{
         /**
          * @return String que representa a profissao Ladino
@@ -107,6 +140,9 @@ public enum Profissoes {
             return "ladino";
         }
     },
+    /**
+     * Profissao Lutador
+     */
     LUTADOR{
         /**
          * @return String que representa a profissao Lutador
@@ -116,6 +152,9 @@ public enum Profissoes {
             return "Lutador";
         }
     },
+    /**
+     * Profissao Nobre
+     */
     NOBRE{
         /**
          * @return String que representa a profissao Nobre
@@ -125,6 +164,9 @@ public enum Profissoes {
             return "Nobre";
         }
     },
+    /**
+     * Profissao Paladino
+     */
     PALADINO{
         /**
          * @return String que representa a profissao Paladino
