@@ -5,11 +5,26 @@ import br.maua.enums.Racas;
 
 public class Personagem {
     private String nome;
-    private Racas raca;
-    private Profissoes prof;
+    private String raca;
+    private String prof;
     private int mana, atq, atqMag, def, defMag, vel, destreza, exp, nivel;
 
     public Personagem(String nome, Racas raca, Profissoes prof, int mana, int atq, int atqMag, int def, int defMag, int vel, int destreza, int exp, int nivel) {
+        this.nome = nome;
+        this.raca = raca.toString();
+        this.prof = prof.toString();
+        this.mana = mana;
+        this.atq = atq;
+        this.atqMag = atqMag;
+        this.def = def;
+        this.defMag = defMag;
+        this.vel = vel;
+        this.destreza = destreza;
+        this.exp = exp;
+        this.nivel = nivel;
+    }
+    public Personagem(String nome, String raca, String prof, int mana, int atq, int atqMag, int def, int defMag,
+                      int vel, int destreza, int exp, int nivel) {
         this.nome = nome;
         this.raca = raca;
         this.prof = prof;
@@ -24,13 +39,14 @@ public class Personagem {
         this.nivel = nivel;
     }
 
+
     public String getNome() {
         return nome;
     }
-    public Racas getRaca() {
+    public String getRaca() {
         return raca;
     }
-    public Profissoes getProf() {
+    public String getProf() {
         return prof;
     }
     public int getMana() {
