@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class CLI {
     private static boolean flag=true;
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     private static List<Personagem> lista = new ArrayList<>();
-    private static PersonagemDAO pDAO = new PersonagemDAO();
+    private static final PersonagemDAO pDAO = new PersonagemDAO();
     public static void run(){
         lista = pDAO.getAll();
         int opcao;
@@ -33,6 +33,7 @@ public class CLI {
                 case 4:
                     System.out.println("Nome: ");
                     deletar(sc.nextLine());
+                    System.out.println("Deletado...");
                     break;
                 case 0:
                     flag=false;
@@ -53,10 +54,12 @@ public class CLI {
                 return;
             }
         }
-        Racas raca=escolherRaca();
+        Racas raca = escolherRaca();
         Profissoes prof = escolherProfissao();
 
-        lista.add(new Personagem(nome, raca, prof, pegarValor("Mana"),pegarValor("Ataque"),pegarValor("Ataque Magico"),pegarValor("Defesa"),pegarValor("Defesa Magica"),pegarValor("Velocidade"),pegarValor("Destreza"),pegarValor("Experiencia"),pegarValor("Nivel")));
+//        lista.add(new Personagem(nome, raca, prof, pegarValor("Mana"),pegarValor("Ataque"),pegarValor("Ataque Magico"),pegarValor("Defesa"),pegarValor("Defesa Magica"),pegarValor("Velocidade"),pegarValor("Destreza"),pegarValor("Experiencia"),pegarValor("Nivel")));
+        pDAO.create(new Personagem(nome, raca, prof, pegarValor("Mana"),pegarValor("Ataque"),pegarValor("Ataque Magico"),pegarValor("Defesa"),pegarValor("Defesa Magica"),pegarValor("Velocidade"),pegarValor("Destreza"),pegarValor("Experiencia"),pegarValor("Nivel")));
+        lista = pDAO.getAll();
     }
     private static void alterar(){
         boolean flagAlterar = false;
@@ -130,9 +133,10 @@ public class CLI {
             pDAO.updateAll(personagemAlterar);
         else{
             deletar(personagemAlterar.getNome());
-            lista.add(personagemAlterar);
+//            lista.add(personagemAlterar);
             pDAO.create(personagemAlterar);
         }
+        lista = pDAO.getAll();
     }
     private static void consultar(){
         System.out.println("Consultando");
@@ -147,8 +151,9 @@ public class CLI {
                 lista) {
             if (personagem.getNome().equals(nome)){
                 pDAO.delete(personagem);
-                lista.remove(personagem);
-                System.out.println(personagem.getNome()+" deletado com sucesso");
+//                lista.remove(personagem);
+                lista = pDAO.getAll();
+//                System.out.println(personagem.getNome()+" deletado com sucesso");
                 return;
             }
         }
