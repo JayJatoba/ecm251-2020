@@ -25,15 +25,25 @@ public class CLI {
                     criacao();
                     break;
                 case 2:
-                    alterar();
+                    if(lista.isEmpty())
+                        System.out.println("Ainda não há nenhum personagem para se alterar...");
+                    else
+                        alterar();
                     break;
                 case 3:
-                    consultar();
+                    if(lista.isEmpty())
+                        System.out.println("Ainda não há nenhum personagem para se consultar...");
+                    else
+                        consultar();
                     break;
                 case 4:
-                    System.out.println("Nome: ");
-                    deletar(sc.nextLine());
-                    System.out.println("Deletado...");
+                    if(lista.isEmpty())
+                        System.out.println("Ainda não há nenhum personagem para se deletar...");
+                    else {
+                        System.out.println("Nome: ");
+                        deletar(sc.nextLine());
+
+                    }
                     break;
                 case 0:
                     flag=false;
@@ -151,9 +161,8 @@ public class CLI {
                 lista) {
             if (personagem.getNome().equals(nome)){
                 pDAO.delete(personagem);
-//                lista.remove(personagem);
                 lista = pDAO.getAll();
-//                System.out.println(personagem.getNome()+" deletado com sucesso");
+                System.out.println(personagem.getNome()+" deletado com sucesso");
                 return;
             }
         }
