@@ -71,20 +71,29 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                 itemBuilder: (context, index) {
                   final item = _lista[index];
                   return Dismissible(
-                    key: Key(item.nome),
-                    onDismissed: (direction) {
-                      setState(() {
-                        _lista.removeAt(index);
-                      });
-                      Scaffold.of(context).showSnackBar(SnackBar(
-                          content: Text("${item.nome} foi retirado(a)")));
-                    },
-                    background: Container(color: Colors.red),
-                    child: ListTile(
-                        title: Text(item.nome),
-                        subtitle: Text(item.quirk),
-                        leading: Image.network(item.imagem)),
-                  );
+                      key: Key(item.nome),
+                      onDismissed: (direction) {
+                        setState(() {
+                          _lista.removeAt(index);
+                        });
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("${item.nome} foi retirado(a)")));
+                      },
+                      background: Container(color: Colors.red),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ApresentarHero(
+                                        item,
+                                      )));
+                        },
+                        child: ListTile(
+                            title: Text(item.nome),
+                            subtitle: Text(item.quirk),
+                            leading: Image.network(item.imagem)),
+                      ));
                 },
                 itemCount: _lista.length,
               ),
