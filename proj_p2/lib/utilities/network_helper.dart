@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class NetworkHelper {
   final String url;
-  NetworkHelper({this.url});
+  NetworkHelper(this.url);
 
   Future getData() async {
     http.Response response = await http.get(url);

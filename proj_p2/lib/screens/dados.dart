@@ -3,7 +3,7 @@ import 'package:proj_p2/models/heroi.dart';
 import 'package:proj_p2/screens/home_inicio.dart';
 
 class ApresentarHero extends StatelessWidget {
-  var _meuHeroi;
+  myHero _meuHeroi;
   ApresentarHero(this._meuHeroi);
 
   @override
@@ -20,6 +20,9 @@ class ApresentarHero extends StatelessWidget {
                     width: 300,
                     height: 150,
                     child: Image.asset("assets/Boku_no_Hero_Academia_Logo.png"),
+                  ),
+                  SizedBox(
+                    child: Image.network(_meuHeroi.imagem),
                   ),
                 ],
               ),

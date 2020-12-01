@@ -11,6 +11,7 @@ class MinhaPaginaInicial extends StatefulWidget {
 
 class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
   var _dados = "";
+  Result encontrado;
   final _myHerosList = [
     myHero("All Might", "One for All",
         "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/cd/Toshinori_Yagi_Golden_Age_Hero_Costume_%28Anime%29.png/revision/latest?cb=20190129015644"),
@@ -24,7 +25,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
 
   final controladorEntrada = TextEditingController();
   final controladorQuirk = TextEditingController();
-  String siteUrl;
+
   final controladorUrlImagem = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -45,36 +46,28 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                 Icon(Icons.drive_file_rename_outline)),
             FlatButton(
                 onPressed: () {
-                  // adicionar_novo_registro();
+                  pesquisar();
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ApresentarHero(
-                            myHero("Estranho", "Muito", "Muito"))),
-                  );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ApresentarHero(
+                                myHero(encontrado.name, encontrado.quirk,
+                                    encontrado.images[0]),
+                              )));
                 },
                 child: Text("Pesquisar")),
-            Expanded(child: ListView.builder(itemBuilder: (context, index) {
-              return ListTile(
-                  title: Text(_myHerosList[index].nome),
-                  subtitle: Text(_myHerosList[index].quirk),
-                  leading: Image.network(_myHerosList[index].imagem));
-            }))
+            // Expanded(child: ListView.builder(itemBuilder: (context, index) {
+            //   return ListTile(
+            //       title: Text(_myHerosList[index].nome),
+            //       subtitle: Text(_myHerosList[index].quirk),
+            //       leading: Image.network(_myHerosList[index].imagem));
+            // }))
           ],
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.send),
-          onPressed: () async {
-            var requisicao = NetworkHelper(
-                url: "https://myheroacademiaapi.com/api/character?alias=deku");
-            var dados = Personagem.fromJson(await requisicao.getData());
-            // if (dados.result[0] == null) {
-            //   var requisicao = NetworkHelper(
-            //       url: "https://myheroacademiaapi.com/api/character?name=" +
-            //           controladorEntrada.toString());
-            //   var dados = Personagem.fromJson(await requisicao.getData());
-            // }
-            print(dados.result[0].alias);
+          onPressed: () {
+            pesquisar();
           },
         ),
       ),
@@ -91,6 +84,23 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
             InputDecoration(hintText: hint, labelText: label, icon: icone),
       ),
     );
+  }
+
+  void pesquisar() async {
+    var requisicao = NetworkHelper(
+        "https://myheroacademiaapi.com/api/character?alias=" +
+            controladorEntrada.text);
+    var dados = Personagem.fromJson(await requisicao.getData());
+    print(dados.result.length == 0);
+    // encontrado =dados.result[0];
+    // print(encontrado);
+    // if (encontrado == null) {
+    //   requisicao = NetworkHelper(
+    //       "https://myheroacademiaapi.com/api/character?name=" +
+    //           controladorEntrada.text);
+    //   dados = Personagem.fromJson(await requisicao.getData());
+    //   encontrado = dados.result[0];
+    // }
   }
 
   void adicionar_novo_registro() {
