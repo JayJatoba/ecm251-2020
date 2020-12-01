@@ -29,10 +29,10 @@ class ApresentarHero extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Text(_meuHeroi.alias.toString()),
                   Text(_meuHeroi.quirk.toString()),
                   Text(_meuHeroi.gender.toString()),
                   Text(_meuHeroi.height.toString()),
-                  Text(_meuHeroi.description.toString()),
                 ],
               ),
             )));

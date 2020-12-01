@@ -49,10 +49,8 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                                 )));
                     bool flag = false;
                     _lista.forEach((element) {
-                      print(element.nome);
                       if (element.nome == ultimo.nome) {
                         flag = true;
-                        print("Sim");
                         return;
                       }
                     });
@@ -61,8 +59,6 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                     }
                   } else {
                     print("Nao ha resultado");
-                    _lista.clear();
-                    print(_lista);
                   }
                 },
                 child: Text("Pesquisar")),
@@ -118,7 +114,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
 
   void _novoHeroi() {
     ultimo = myHero(encontrado.name, encontrado.quirk, encontrado.images[0],
-        encontrado.gender, encontrado.height, encontrado.description);
+        encontrado.gender, encontrado.height, encontrado.alias);
   }
 
   void _pesquisar() async {
@@ -131,7 +127,6 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
             controladorEntrada.text);
     var dados = Personagem.fromJson(await requisicao.getData());
     if (dados.result.length != 0) {
-      print("gwg");
       encontrado = dados.result[0];
       return;
     }
@@ -148,7 +143,6 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
   void adicionar_novo_registro() {
     setState(() {
       _lista.add(ultimo);
-      print(_lista);
     });
   }
 }
