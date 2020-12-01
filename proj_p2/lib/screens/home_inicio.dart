@@ -12,6 +12,7 @@ class MinhaPaginaInicial extends StatefulWidget {
 class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
   var _dados = "";
   Result encontrado;
+  final List<myHero> _lista = [];
 
   final controladorEntrada = TextEditingController();
   final controladorQuirk = TextEditingController();
@@ -35,40 +36,54 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                 "Nome ou Alias do personagem: ",
                 Icon(Icons.drive_file_rename_outline)),
             FlatButton(
-                onPressed: () {
-                  Future<Result> resultado = pesquisar();
-                  if (resultado != null) {
-                    print(resultado);
+                onPressed: () async {
+                  encontrado = null;
+// Este await fez dar certo a impementacao de _pesquisar()
+                  await _pesquisar();
+
+                  if (encontrado != null) {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ApresentarHero(
                                   myHero(
-                                      resultado.name,
+                                      encontrado.name,
                                       encontrado.quirk,
                                       encontrado.images[0],
                                       encontrado.gender,
                                       encontrado.height,
                                       encontrado.description),
                                 )));
+                    adicionar_novo_registro();
                   } else {
-                    print("Nao ha resutlado");
+                    print("Nao ha resultado");
                   }
                 },
                 child: Text("Pesquisar")),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return ListTile(
+                      title: Text(_lista[index].nome),
+                      subtitle: Text(_lista[index].quirk),
+                      leading: Image.network(_lista[index].imagem));
+                },
+                itemCount: _lista.length,
+              ),
+            )
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.send),
-          onPressed: () {
-            if (controladorEntrada.text.isNotEmpty) {
-              pesquisar();
-              print(encontrado.name);
-            } else {
-              print("N sei");
-            }
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   child: Icon(Icons.send),
+        //   onPressed: () {
+        //     if (controladorEntrada.text.isNotEmpty) {
+        //       _pesquisar();
+        //       print(encontrado.name);
+        //     } else {
+        //       print("N sei");
+        //     }
+        //   },
+        // ),
       ),
     );
   }
@@ -85,32 +100,35 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     );
   }
 
-  Future<Result> pesquisar() async {
+  void _pesquisar() async {
     if (controladorEntrada.text.isEmpty) {
-      return null;
+      encontrado = null;
+      return;
     }
     var requisicao = NetworkHelper(
         "https://myheroacademiaapi.com/api/character?alias=" +
             controladorEntrada.text);
     var dados = Personagem.fromJson(await requisicao.getData());
     if (dados.result.length != 0) {
-      return dados.result[0];
+      print("gwg");
+      encontrado = dados.result[0];
+      return;
     }
     requisicao = NetworkHelper(
         "https://myheroacademiaapi.com/api/character?name=" +
             controladorEntrada.text);
     dados = Personagem.fromJson(await requisicao.getData());
     if (dados.result.length != 0) {
-      return dados.result[0];
+      encontrado = dados.result[0];
+      return;
     }
-    return null;
   }
 
-  // void adicionar_novo_registro() {
-  //   setState(() {
-  //     _myHerosList.add(myHero(controladorEntrada.text, controladorQuirk.text,
-  //         controladorUrlImagem.text));
-  //     print(_myHerosList);
-  //   });
-  // }
+  void adicionar_novo_registro() {
+    setState(() {
+      _lista.add(myHero(encontrado.name, encontrado.quirk, encontrado.images[0],
+          encontrado.gender, encontrado.height, encontrado.description));
+      print(_lista);
+    });
+  }
 }
