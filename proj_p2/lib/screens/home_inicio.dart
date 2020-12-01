@@ -10,14 +10,12 @@ class MinhaPaginaInicial extends StatefulWidget {
 }
 
 class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
-  var _dados = "";
   Result encontrado;
   final List<myHero> _lista = [];
+  myHero ultimo;
 
   final controladorEntrada = TextEditingController();
-  final controladorQuirk = TextEditingController();
 
-  final controladorUrlImagem = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,48 +40,57 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                   await _pesquisar();
 
                   if (encontrado != null) {
+                    _novoHeroi();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ApresentarHero(
-                                  myHero(
-                                      encontrado.name,
-                                      encontrado.quirk,
-                                      encontrado.images[0],
-                                      encontrado.gender,
-                                      encontrado.height,
-                                      encontrado.description),
+                                  ultimo,
                                 )));
-                    adicionar_novo_registro();
+                    bool flag = false;
+                    _lista.forEach((element) {
+                      print(element.nome);
+                      if (element.nome == ultimo.nome) {
+                        flag = true;
+                        print("Sim");
+                        return;
+                      }
+                    });
+                    if (!flag) {
+                      adicionar_novo_registro();
+                    }
                   } else {
                     print("Nao ha resultado");
+                    _lista.clear();
+                    print(_lista);
                   }
                 },
                 child: Text("Pesquisar")),
             Expanded(
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ListTile(
-                      title: Text(_lista[index].nome),
-                      subtitle: Text(_lista[index].quirk),
-                      leading: Image.network(_lista[index].imagem));
+                  final item = _lista[index];
+                  return Dismissible(
+                    key: Key(item.nome),
+                    onDismissed: (direction) {
+                      setState(() {
+                        _lista.removeAt(index);
+                      });
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text("${item.nome} foi retirado(a)")));
+                    },
+                    background: Container(color: Colors.red),
+                    child: ListTile(
+                        title: Text(item.nome),
+                        subtitle: Text(item.quirk),
+                        leading: Image.network(item.imagem)),
+                  );
                 },
                 itemCount: _lista.length,
               ),
             )
           ],
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   child: Icon(Icons.send),
-        //   onPressed: () {
-        //     if (controladorEntrada.text.isNotEmpty) {
-        //       _pesquisar();
-        //       print(encontrado.name);
-        //     } else {
-        //       print("N sei");
-        //     }
-        //   },
-        // ),
       ),
     );
   }
@@ -98,6 +105,11 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
             InputDecoration(hintText: hint, labelText: label, icon: icone),
       ),
     );
+  }
+
+  void _novoHeroi() {
+    ultimo = myHero(encontrado.name, encontrado.quirk, encontrado.images[0],
+        encontrado.gender, encontrado.height, encontrado.description);
   }
 
   void _pesquisar() async {
@@ -126,8 +138,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
 
   void adicionar_novo_registro() {
     setState(() {
-      _lista.add(myHero(encontrado.name, encontrado.quirk, encontrado.images[0],
-          encontrado.gender, encontrado.height, encontrado.description));
+      _lista.add(ultimo);
       print(_lista);
     });
   }
