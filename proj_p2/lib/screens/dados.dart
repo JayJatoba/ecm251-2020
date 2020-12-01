@@ -11,7 +11,7 @@ class ApresentarHero extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text("Detalhes de: " + _meuHeroi.nome),
+              title: Text("Detalhes de: " + _meuHeroi.nome.toString()),
             ),
             body: Center(
               child: Column(
@@ -21,9 +21,18 @@ class ApresentarHero extends StatelessWidget {
                     height: 150,
                     child: Image.asset("assets/Boku_no_Hero_Academia_Logo.png"),
                   ),
-                  SizedBox(
-                    child: Image.network(_meuHeroi.imagem),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(64.0),
+                      child: SizedBox(
+                        child: Image.network(_meuHeroi.imagem),
+                      ),
+                    ),
                   ),
+                  Text(_meuHeroi.quirk.toString()),
+                  Text(_meuHeroi.gender.toString()),
+                  Text(_meuHeroi.height.toString()),
+                  Text(_meuHeroi.description.toString()),
                 ],
               ),
             )));

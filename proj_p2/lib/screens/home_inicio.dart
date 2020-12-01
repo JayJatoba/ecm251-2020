@@ -12,16 +12,6 @@ class MinhaPaginaInicial extends StatefulWidget {
 class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
   var _dados = "";
   Result encontrado;
-  final _myHerosList = [
-    myHero("All Might", "One for All",
-        "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/cd/Toshinori_Yagi_Golden_Age_Hero_Costume_%28Anime%29.png/revision/latest?cb=20190129015644"),
-    myHero("Midoriya", "One for All",
-        "https://comicvine1.cbsistatic.com/uploads/square_small/11117/111173561/5994041-8086170340-63780.jpg"),
-    myHero("Bakugou", "Explosao",
-        "https://img.favpng.com/0/5/11/my-hero-academia-eijirou-kirishima-tenya-iida-character-boku-no-hero-academia-smash-png-favpng-3cwat4m5L3Ggp2ntKy51q3BJN.jpg"),
-    myHero("Ochako", "Zero Gravity",
-        "https://ovicio.com.br/wp-content/uploads/2019/10/20191028-uraraka-anime.jpg")
-  ];
 
   final controladorEntrada = TextEditingController();
   final controladorQuirk = TextEditingController();
@@ -46,28 +36,37 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                 Icon(Icons.drive_file_rename_outline)),
             FlatButton(
                 onPressed: () {
-                  pesquisar();
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ApresentarHero(
-                                myHero(encontrado.name, encontrado.quirk,
-                                    encontrado.images[0]),
-                              )));
+                  Future<Result> resultado = pesquisar();
+                  if (resultado != null) {
+                    print(resultado);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ApresentarHero(
+                                  myHero(
+                                      resultado.name,
+                                      encontrado.quirk,
+                                      encontrado.images[0],
+                                      encontrado.gender,
+                                      encontrado.height,
+                                      encontrado.description),
+                                )));
+                  } else {
+                    print("Nao ha resutlado");
+                  }
                 },
                 child: Text("Pesquisar")),
-            // Expanded(child: ListView.builder(itemBuilder: (context, index) {
-            //   return ListTile(
-            //       title: Text(_myHerosList[index].nome),
-            //       subtitle: Text(_myHerosList[index].quirk),
-            //       leading: Image.network(_myHerosList[index].imagem));
-            // }))
           ],
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.send),
           onPressed: () {
-            pesquisar();
+            if (controladorEntrada.text.isNotEmpty) {
+              pesquisar();
+              print(encontrado.name);
+            } else {
+              print("N sei");
+            }
           },
         ),
       ),
@@ -86,28 +85,32 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     );
   }
 
-  void pesquisar() async {
+  Future<Result> pesquisar() async {
+    if (controladorEntrada.text.isEmpty) {
+      return null;
+    }
     var requisicao = NetworkHelper(
         "https://myheroacademiaapi.com/api/character?alias=" +
             controladorEntrada.text);
     var dados = Personagem.fromJson(await requisicao.getData());
-    print(dados.result.length == 0);
-    // encontrado =dados.result[0];
-    // print(encontrado);
-    // if (encontrado == null) {
-    //   requisicao = NetworkHelper(
-    //       "https://myheroacademiaapi.com/api/character?name=" +
-    //           controladorEntrada.text);
-    //   dados = Personagem.fromJson(await requisicao.getData());
-    //   encontrado = dados.result[0];
-    // }
+    if (dados.result.length != 0) {
+      return dados.result[0];
+    }
+    requisicao = NetworkHelper(
+        "https://myheroacademiaapi.com/api/character?name=" +
+            controladorEntrada.text);
+    dados = Personagem.fromJson(await requisicao.getData());
+    if (dados.result.length != 0) {
+      return dados.result[0];
+    }
+    return null;
   }
 
-  void adicionar_novo_registro() {
-    setState(() {
-      _myHerosList.add(myHero(controladorEntrada.text, controladorQuirk.text,
-          controladorUrlImagem.text));
-      print(_myHerosList);
-    });
-  }
+  // void adicionar_novo_registro() {
+  //   setState(() {
+  //     _myHerosList.add(myHero(controladorEntrada.text, controladorQuirk.text,
+  //         controladorUrlImagem.text));
+  //     print(_myHerosList);
+  //   });
+  // }
 }
