@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proj_p2/models/heroi.dart';
 
 class ApresentarHero extends StatelessWidget {
@@ -10,7 +11,7 @@ class ApresentarHero extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text(_meuHeroi.nome.toString()),
+              title: Text(_apresentaAtributo(_meuHeroi.alias)),
               centerTitle: true,
             ),
             body: Center(
@@ -23,18 +24,42 @@ class ApresentarHero extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(64.0),
+                      padding: const EdgeInsets.all(32.0),
                       child: SizedBox(
                         child: Image.network(_meuHeroi.imagem),
                       ),
                     ),
                   ),
-                  Text(_meuHeroi.alias.toString()),
-                  Text(_meuHeroi.quirk.toString()),
-                  Text(_meuHeroi.gender.toString()),
-                  Text(_meuHeroi.height.toString()),
+                  Text(
+                    "Nome: " + _apresentaAtributo(_meuHeroi.nome),
+                    style: GoogleFonts.marvel(fontSize: 30),
+                  ),
+                  Text(
+                    "Quirk(s): " + _apresentaAtributo(_meuHeroi.quirk),
+                    style: GoogleFonts.marvel(fontSize: 30),
+                  ),
+                  Text(
+                    "Genero: " + _apresentaAtributo(_meuHeroi.gender),
+                    style: GoogleFonts.marvel(fontSize: 30),
+                  ),
+                  Text(
+                    "Altura: " + _apresentaAtributo(_meuHeroi.height),
+                    style: GoogleFonts.marvel(fontSize: 30),
+                  ),
                 ],
               ),
             )));
+  }
+
+  String _apresentaAtributo(String atributo) {
+    if (atributo == null) {
+      return "Nao se conhece ou nao sabemos";
+    } else if (atributo.toString() == "Male") {
+      return "Masculino";
+    } else if (atributo.toString() == "Female") {
+      return "Feminino";
+    } else {
+      return atributo.toString();
+    }
   }
 }

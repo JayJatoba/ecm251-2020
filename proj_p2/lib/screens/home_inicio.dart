@@ -44,6 +44,8 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                     _novoHeroi();
                     _mudarTela(ultimo);
                     bool flag = false;
+
+                    // adiciona na lista se nao estiver nela
                     _lista.forEach((element) {
                       if (element.nome == ultimo.nome) {
                         flag = true;
@@ -53,9 +55,9 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                     if (!flag) {
                       adicionar_novo_registro();
                     }
-                  } else {
-                    print("Nao ha resultado");
-                    alerta("Erro", "Personagem nao encontrado");
+                  } else if (controladorEntrada.text.isNotEmpty) {
+                    alerta("assets/disappointed_shoto.jpg",
+                        "Personagem nao encontrado");
                   }
                 },
                 child: Text("Pesquisar")),
@@ -78,8 +80,8 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                           _mudarTela(item);
                         },
                         child: ListTile(
-                            title: Text(item.nome),
-                            subtitle: Text(item.quirk),
+                            title: Text(apresentaAtributo(item.alias)),
+                            subtitle: Text(apresentaAtributo(item.nome)),
                             leading: Image.network(item.imagem)),
                       ));
                 },
@@ -90,6 +92,14 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
         ),
       ),
     );
+  }
+
+  String apresentaAtributo(String atributo) {
+    if (atributo == null) {
+      return "Sem alias";
+    } else {
+      return atributo;
+    }
   }
 
   Widget meuTextFieldPersonalizado(
@@ -117,7 +127,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
   void _pesquisar() async {
     if (controladorEntrada.text.isEmpty) {
       encontrado = null;
-      alerta("Erro", "Barra de procura vazia");
+      alerta("assets/aizawa_sleeps.jpg", "Barra de procura vazia");
       return;
     }
     var requisicao = NetworkHelper(
@@ -138,12 +148,12 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     }
   }
 
-  void alerta(String alerta, String frase) {
+  void alerta(String imagem, String frase) {
     Alert(
       context: context,
-      type: AlertType.error,
-      title: alerta,
+      title: "Erro",
       desc: frase,
+      image: Image.asset(imagem),
       buttons: [
         DialogButton(
           child: Text(
