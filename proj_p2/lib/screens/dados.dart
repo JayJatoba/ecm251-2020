@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proj_p2/models/heroi.dart';
-import 'package:proj_p2/screens/home_inicio.dart';
 
 class ApresentarHero extends StatelessWidget {
-  myHero _meuHeroi;
+  final myHero _meuHeroi;
   ApresentarHero(this._meuHeroi);
 
   @override
@@ -11,7 +10,8 @@ class ApresentarHero extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text("Detalhes de: " + _meuHeroi.nome.toString()),
+              title: Text(_meuHeroi.nome.toString()),
+              centerTitle: true,
             ),
             body: Center(
               child: Column(

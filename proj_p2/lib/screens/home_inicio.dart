@@ -3,6 +3,7 @@ import 'package:proj_p2/models/heroi.dart';
 import 'package:proj_p2/models/personagem.dart';
 import 'package:proj_p2/screens/dados.dart';
 import 'package:proj_p2/utilities/network_helper.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class MinhaPaginaInicial extends StatefulWidget {
   @override
@@ -41,12 +42,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
 
                   if (encontrado != null) {
                     _novoHeroi();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ApresentarHero(
-                                  ultimo,
-                                )));
+                    _mudarTela(ultimo);
                     bool flag = false;
                     _lista.forEach((element) {
                       if (element.nome == ultimo.nome) {
@@ -59,6 +55,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                     }
                   } else {
                     print("Nao ha resultado");
+                    alerta("Erro", "Personagem nao encontrado");
                   }
                 },
                 child: Text("Pesquisar")),
@@ -78,12 +75,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                       background: Container(color: Colors.red),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ApresentarHero(
-                                        item,
-                                      )));
+                          _mudarTela(item);
                         },
                         child: ListTile(
                             title: Text(item.nome),
@@ -117,9 +109,15 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
         encontrado.gender, encontrado.height, encontrado.alias);
   }
 
+  void _mudarTela(myHero heroi) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ApresentarHero(heroi)));
+  }
+
   void _pesquisar() async {
     if (controladorEntrada.text.isEmpty) {
       encontrado = null;
+      alerta("Erro", "Barra de procura vazia");
       return;
     }
     var requisicao = NetworkHelper(
@@ -138,6 +136,25 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
       encontrado = dados.result[0];
       return;
     }
+  }
+
+  void alerta(String alerta, String frase) {
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: alerta,
+      desc: frase,
+      buttons: [
+        DialogButton(
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
   }
 
   void adicionar_novo_registro() {
