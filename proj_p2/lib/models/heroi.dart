@@ -1,3 +1,5 @@
+// Classe generica para personagens do anime
+
 class myHero {
   var _nome;
   var _quirk;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:proj_p2/models/heroi.dart';
 import 'package:proj_p2/models/personagem.dart';
 import 'package:proj_p2/screens/dados.dart';
@@ -61,10 +62,18 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                   }
                 },
                 child: Text("Pesquisar")),
+            Text(
+              "Pesquisados:",
+              style: GoogleFonts.marvel(fontSize: 30),
+            ),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                padding: const EdgeInsets.all(8),
                 itemBuilder: (context, index) {
                   final item = _lista[index];
+                  // Funcao achada no flutter dev
+                  // Implementacao do onTap() e slider
+                  // onTap vai pra outra pagina e slider para deletar
                   return Dismissible(
                       key: Key(item.nome),
                       onDismissed: (direction) {
@@ -86,6 +95,8 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
                       ));
                 },
                 itemCount: _lista.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
               ),
             )
           ],
@@ -94,6 +105,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     );
   }
 
+// metodo para apresentar atributos mesmo que nulos
   String apresentaAtributo(String atributo) {
     if (atributo == null) {
       return "Sem alias";
@@ -102,6 +114,7 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     }
   }
 
+// Funcao copiada da aula
   Widget meuTextFieldPersonalizado(
       TextEditingController controller, String hint, String label, Icon icone) {
     return Padding(
@@ -114,16 +127,22 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     );
   }
 
+// Substitui a var ultimo pelo no myHero a ser adicionado
   void _novoHeroi() {
     ultimo = myHero(encontrado.name, encontrado.quirk, encontrado.images[0],
         encontrado.gender, encontrado.height, encontrado.alias);
   }
 
+// Funcao achada no site de flutter dev
+// https://flutter.dev/docs/cookbook/navigation/navigation-basics
   void _mudarTela(myHero heroi) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => ApresentarHero(heroi)));
   }
 
+// Funcao que usa parte do que foi feito em aula
+// Antes ira procurar pelo alias (nome popular: de heroi ou de vilao), depois pelo nome da personagem
+// se estiver nulo a area de escrita, retorna um alerta
   void _pesquisar() async {
     if (controladorEntrada.text.isEmpty) {
       encontrado = null;
@@ -148,6 +167,8 @@ class _MinhaPaginaInicialState extends State<MinhaPaginaInicial> {
     }
   }
 
+// Funcao achada no flutter dev
+// https://pub.dev/packages/rflutter_alert
   void alerta(String imagem, String frase) {
     Alert(
       context: context,

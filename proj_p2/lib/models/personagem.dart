@@ -1,3 +1,5 @@
+// classe feita a partir do site de json to dart
+
 class Personagem {
   Info _info;
   List<Result> _result;

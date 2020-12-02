@@ -51,6 +51,8 @@ class ApresentarHero extends StatelessWidget {
             )));
   }
 
+// metodo para apresentar atributos mesmo que nulos
+// substitui o genero de ingles para portugues tambem
   String _apresentaAtributo(String atributo) {
     if (atributo == null) {
       return "Nao se conhece ou nao sabemos";
