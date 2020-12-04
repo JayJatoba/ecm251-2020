@@ -8,11 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Responsavel pela interface com o usuario
+ * @author Andre Lebrao 18.00356-7
+ * @author Joao Guilherme Jatoba 18.01790-8
+ * @since 24/11/2020
+ */
+
 public class CLI {
     private static boolean flag=true;
     private static final Scanner sc = new Scanner(System.in);
     private static List<Personagem> lista = new ArrayList<>();
     private static final PersonagemDAO pDAO = new PersonagemDAO();
+
+    /**
+     * Metodo que sera a implementacao da interface que o usuario vera
+     */
     public static void run(){
         lista = pDAO.getAll();
         int opcao;
@@ -54,6 +65,10 @@ public class CLI {
             }
         }
     }
+
+    /**
+     * Metodo para adicionar um personagem novo ao banco de dados
+     */
     private static void criacao(){
         System.out.println("Nome do personagem:");
         String nome =sc.nextLine();
@@ -71,6 +86,10 @@ public class CLI {
         pDAO.create(new Personagem(nome, raca, prof, pegarValor("Mana"),pegarValor("Ataque"),pegarValor("Ataque Magico"),pegarValor("Defesa"),pegarValor("Defesa Magica"),pegarValor("Velocidade"),pegarValor("Destreza"),pegarValor("Experiencia"),pegarValor("Nivel")));
         lista = pDAO.getAll();
     }
+
+    /**
+     * Metodo que fara uma alteracao nos dados de um persongaem especificado pelo usuario
+     */
     private static void alterar(){
         boolean flagAlterar = false;
         Personagem personagemAlterar = null;
@@ -148,6 +167,10 @@ public class CLI {
         }
         lista = pDAO.getAll();
     }
+
+    /**
+     * Metodo que ira imprimir na linha de comando todos os personagens existentes na lista do banco de dados
+     */
     private static void consultar(){
         System.out.println("Consultando");
 
@@ -156,6 +179,12 @@ public class CLI {
             System.out.println(personagem);
         }
     }
+
+    /**
+     * Metodo que ira deletar da lsita do banco de dados um personagem especificado pelo usuario.
+     *
+     * @param nome Nome do personagem a ser deletado
+     */
     private static void deletar(String nome){
         for (Personagem personagem:
                 lista) {
@@ -168,6 +197,11 @@ public class CLI {
         }
         System.out.println("Personagem com nome: \'"+nome+"\' nao encontrado");
     }
+
+    /**
+     * Metodo que implementa um switch case com todas as escolhas de raca possivel
+     * @return Raca escolhida
+     */
     private static Racas escolherRaca(){
         System.out.println("Escolha a sua raca: \n1- Humano\n2- Anao\n3- Dahllan\n4- Elfo\n5- Goblin\n6- Lefou\n7- Minotauro\n8- Qareen\n9- Golem \n10- Hynne\n11- Kliren\n12- Medusa\n13- Osteon\n14- Silfide\n15- Suraggel\n16- Trog");
         int opcao = sc.nextInt();
@@ -209,6 +243,11 @@ public class CLI {
                 return escolherRaca();
         }
     }
+
+    /**
+     * Metodo que implementa um switch case com todas as escolhas de profissao possivel
+     * @return Profissao escolhida
+     */
     private  static Profissoes escolherProfissao(){
         System.out.println("Escolah sua profissao: \n1- Arcanista\n2- Barbaro\n3- Bardo\n4- Bucaneiro\n5- Cacador\n6- Cavaleiro\n7- Clerigo\n8- Druida\n9- Guerreiro\n10- Inventor\n11- Ladino\n12- Lutador\n13- Nobre\n14- Paladino");
         int opcao = sc.nextInt();
@@ -245,6 +284,12 @@ public class CLI {
                 return escolherProfissao();
         }
     }
+
+    /**
+     * Metodo para atribuir um valor ao atributo parametro
+     * @param tipo Qual atributo esta ganhando um valor representativo
+     * @return Numero inteiro que representa o valor do atributo em questao
+     */
     private static int pegarValor(String tipo){
         System.out.println("Digite o valor (sempre maior que 0) do atributo: "+tipo);
         int valor = sc.nextInt();
