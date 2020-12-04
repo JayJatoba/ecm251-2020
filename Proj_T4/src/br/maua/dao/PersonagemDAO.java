@@ -85,7 +85,7 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
      * @param personagem Personagem que ira ter variaveis mudadas
      */
     @Override
-    public void updateAll(Personagem personagem) {
+    public void updateAll(Personagem personagem, String nomeOriginal) {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(getUpdateAllString(getTableName()));
             preparedStatement.setString(1,personagem.getNome());
@@ -100,7 +100,7 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
             preparedStatement.setInt(10,personagem.getDestreza());
             preparedStatement.setInt(11,personagem.getExp());
             preparedStatement.setInt(12,personagem.getNivel());
-            preparedStatement.setString(13,personagem.getNome());
+            preparedStatement.setString(13,nomeOriginal);
             int retorno = preparedStatement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

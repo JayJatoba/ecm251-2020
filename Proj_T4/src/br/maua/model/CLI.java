@@ -106,8 +106,10 @@ public class CLI {
             }
 
         }
-        if(!flagAlterar)
+        if(!flagAlterar) {
             System.out.println("Personagem não existe\n");
+            return;
+        }
         while(flagAlterar){
             System.out.println("Escolha o que alterar");
             System.out.println("1 - Nome\n2 - Raca\n3 - Profissão\n4 - Mana\n5 - Ataque\n6 - Ataque Mágico\n7 - " +
@@ -157,14 +159,7 @@ public class CLI {
                     break;
             }
         }
-
-        if(nomeOriginal.equals(personagemAlterar.getNome()))
-            pDAO.updateAll(personagemAlterar);
-        else{
-            deletar(personagemAlterar.getNome());
-//            lista.add(personagemAlterar);
-            pDAO.create(personagemAlterar);
-        }
+        pDAO.updateAll(personagemAlterar,nomeOriginal);
         lista = pDAO.getAll();
     }
 
