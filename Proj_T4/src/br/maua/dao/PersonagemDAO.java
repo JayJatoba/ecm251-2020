@@ -64,21 +64,6 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
         return personagens;
     }
 
-    @Override
-    public void update(Personagem personagem, String coluna,String novoValor) {
-        try{
-            PreparedStatement preparedStatement = connection.prepareStatement(getUpdateString(getTableName(),coluna));
-            if(coluna.equals("nome")||coluna.equals("raca")||coluna.equals("prof"))
-                preparedStatement.setString(1, novoValor);
-            else
-                preparedStatement.setInt(1,Integer.parseInt(novoValor));
-            preparedStatement.setString(2,personagem.getNome());
-            //Executa o PreparedStatement
-            int retorno = preparedStatement.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Metodo usado para atualizar variaveis de um personagem do banco de dados
@@ -157,11 +142,12 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
         return "personagens";
     }
 
-    @Override
-    public String getUpdateString(String table,String coluna) {
-        return "UPDATE "+ table +" SET "+coluna+" = ? WHERE nome = ?;";
-    }
 
+    /**
+     * Atualiza uma linha determinada pelo nome do personagem
+     * @param table Nome da tabela
+     * @return Frase usada em SQL para atualizar os dados da tabela
+     */
     @Override
     public String getUpdateAllString(String table) {
         return "UPDATE "+ table +" SET nome = ?, raca = ?, prof = ?, mana = ?, atq = ?, atqMag = ?, def = ?, defMag =" +
@@ -188,6 +174,11 @@ public class PersonagemDAO  implements DAO<Personagem>,DAOFields{
         return "SELECT * FROM " + table;
     }
 
+    /**
+     *
+     * @param table Nome da tabela
+     * @return Frase usada em SQL para deletar uma linha da tabela
+     */
     @Override
     public String getDeleteString(String table) {
         return "DELETE FROM "+ table +" WHERE nome = ?";

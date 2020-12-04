@@ -15,10 +15,10 @@ public class Item {
 
     /**
      * Construtor da classe Item
-     * @param nome
-     * @param preco
-     * @param peso
-     * @param quant
+     * @param nome Nome do item
+     * @param preco Preco do item
+     * @param peso Peso do item
+     * @param quant Quantidade do item
      */
     public Item(String nome, float preco, float peso, int quant) {
         this.nome = nome;
@@ -37,7 +37,7 @@ public class Item {
 
     /**
      * Determina o nome do item
-     * @param nome
+     * @param nome Nome a ser colocado
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -53,7 +53,7 @@ public class Item {
 
     /**
      * Determina o preco do item
-     * @param preco
+     * @param preco Preco a ser colocado
      */
     public void setPreco(float preco) {
         this.preco = preco;
@@ -69,7 +69,7 @@ public class Item {
 
     /**
      * Determina o peso do item
-     * @param peso
+     * @param peso Peso a ser colocado
      */
     public void setPeso(float peso) {
         this.peso = peso;
@@ -85,7 +85,7 @@ public class Item {
 
     /**
      * Determina a quantidade desse item que o personagem possui
-     * @param quant
+     * @param quant Quantidade a ser colocada
      */
     public void setQuant(int quant) {
         this.quant = quant;

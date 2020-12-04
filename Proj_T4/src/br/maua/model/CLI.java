@@ -286,7 +286,7 @@ public class CLI {
      * @return Numero inteiro que representa o valor do atributo em questao
      */
     private static int pegarValor(String tipo){
-        System.out.println("Digite o valor (sempre maior que 0) do atributo: "+tipo);
+        System.out.println("Digite o valor (sempre maior ou igual a 0) do atributo: "+tipo);
         int valor = sc.nextInt();
         if (valor<0){
             return pegarValor(tipo);
